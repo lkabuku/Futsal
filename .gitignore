@@ -10,10 +10,4 @@
 /vendor/
 /bin/
 /composer.phar
-/.idea/encodings.xml
-/.idea/frameworkRootSettings.xml
-/.idea/futsal.iml
-/.idea/misc.xml
-/.idea/modules.xml
-/.idea/scopes/scope_settings.xml
-/.idea/vcs.xml
+/nbproject/*
