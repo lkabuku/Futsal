@@ -1,12 +1,31 @@
 security:
+    encoders:
+        UserBundle\Entity\User:
+            algorithm: sha512
+            
     providers:
-        in_memory:
-            memory: ~
+        main:
+            entity: { class: Futsal\UserBundle\Entity\User, property: username }
+
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
+
 
     firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt|error)|css|images|js)/
-            security: false
-
-        default:
+        secured_area:
+            pattern:    ^/
             anonymous: ~
+            form_login:
+                login_path:  /login
+                check_path:  /login_check
+            logout:
+                path:   /logout
+                
+    #firewalls:
+    #    dev:
+    #        pattern: ^/(_(profiler|wdt|error)|css|images|js)/
+    #        security: false
+
+    #    default:
+    #        anonymous: ~
+
