@@ -1,3 +1,15 @@
 futsal_user_homepage:
     path:     /
     defaults: { _controller: FutsalUserBundle:Default:index }
+    
+futsal_user_login:
+    path:     /login
+    defaults: { _controller: FutsalUserBundle:Security:login }
+
+futsal_user_login_check:
+    path:     /login_check
+    defaults: { _controller: FutsalUserBundle:Security:loginCheck }
+    
+futsal_user_admin_homepage:
+    path:     /admin/home
+    defaults: { _controller: FutsalUserBundle:Security:admin }
