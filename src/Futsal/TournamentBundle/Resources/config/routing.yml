@@ -1,0 +1,3 @@
+futsal_tournament_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: FutsalTournamentBundle:Default:index }
