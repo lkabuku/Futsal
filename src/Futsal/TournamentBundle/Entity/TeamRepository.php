@@ -12,4 +12,8 @@ use Doctrine\ORM\EntityRepository;
  */
 class TeamRepository extends EntityRepository
 {
+    public function getAllPlayersInTeam()
+    {
+        
+    }
 }
