@@ -12,12 +12,12 @@ use Futsal\TournamentBundle\Entity\GameTeam;
 class LoadGames extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
-    {
+    {       
         $matchs = array(
-                    0 => array(0, 1),
-                    1 => array(2, 3),
-                    2 => array(4, 5),
-                    3 => array(6, 7),                    
+                    0 => array(1, 2),
+                    1 => array(3, 4),
+                    2 => array(5, 6),
+                    3 => array(7, 8),
                 );
         
         foreach ($matchs as $match) {                   
@@ -37,7 +37,11 @@ class LoadGames extends AbstractFixture implements OrderedFixtureInterface
                 $game = new Game();
                 $game->addGameResult($gameResult1);
                 $game->addGameResult($gameResult2);
-
+                
+                // Set the id_match for 2 teams
+                $gameResult1->setGame($game);
+                $gameResult2->setGame($game);
+                
                 // We persist all
                 $manager->persist($gameResult1);
                 $manager->persist($gameResult2);
@@ -52,7 +56,7 @@ class LoadGames extends AbstractFixture implements OrderedFixtureInterface
     }
 
     public function getOrder() {
-        return 4;
+        return 5;
     }
 
 }
