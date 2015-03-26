@@ -58,7 +58,7 @@ class Tournament
 
     /**
      * @ORM\ManyToMany(targetEntity="Futsal\TournamentBundle\Entity\Team")
-     * @ORM\JoinTable(name="fut_tournament_team_assoc", joinColumns={@ORM\JoinColumn(name="team_id", referencedColumnName="id")})
+     * @ORM\JoinTable(name="fut_tournament_team_assoc", joinColumns={@ORM\JoinColumn(name="tournament_id", referencedColumnName="id")}, inverseJoinColumns={@ORM\JoinColumn(name="team_id", referencedColumnName="id")})
      **/
     private $teamsSubscribed;
     
