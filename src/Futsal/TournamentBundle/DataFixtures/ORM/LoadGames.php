@@ -13,7 +13,7 @@ class LoadGames extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-         $matchs = array(
+        $matchs = array(
                     0 => array(0, 1),
                     1 => array(2, 3),
                     2 => array(4, 5),
