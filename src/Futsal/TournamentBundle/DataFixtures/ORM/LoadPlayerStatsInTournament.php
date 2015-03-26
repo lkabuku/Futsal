@@ -5,7 +5,7 @@ namespace Futsal\TournamentBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-//use Futsal\TournamentBundle\Entity\Tournament;
+use Futsal\TournamentBundle\Entity\TournamentPlayerStats;
 
 class LoadPlayerStatsInTournament extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -15,32 +15,35 @@ class LoadPlayerStatsInTournament extends AbstractFixture implements OrderedFixt
         $games = $manager->getRepository('FutsalTournamentBundle:Game')->findAll();
         
         // We look for one tournament
-        //$tournament = $manager->getRepository('FutsalTournamentBundle:Tournament')->find(1);
+        $tournament = $manager->getRepository('FutsalTournamentBundle:Tournament')->find(1);
         
         foreach($games as $game) {
             $gameResults = $game->getGameResults();
+            
             foreach($gameResults as $gameResult) {
+                //Get id of a team
                 $gameResult->getTeam();
-                echo $gameResult->getTeam()->getId();
+                $idTeam =  $gameResult->getTeam()->getId();
+                
+                // Get all players who belong to a team
+                $playersOneTeam = $manager->getRepository('FutsalTournamentBundle:Player')->findByTeam($idTeam);
+                
+                // Add Stats for players
+                foreach($playersOneTeam as $player) {
+                    $tournamentPlayerStats = new TournamentPlayerStats();
+                    $tournamentPlayerStats->setPlayer($player);
+                    $tournamentPlayerStats->setTournament($tournament);
+                    $tournamentPlayerStats->setGame($game);
+                    $tournamentPlayerStats->setNbGoals(rand(0, 10));
+                    
+                    // We persist id
+                    $manager->persist($tournamentPlayerStats);
+                }
             }
         }
         
-        
-        /*
-     
-        foreach($games as $game) {
-            // Add a team in a tournament
-            echo $team->getId();
-            $tournament->addTeamsSubscribed($team);
-        }
-        
-        // We persist them
-        $manager->persist($tournament);
-        
-        // Then we record all the tournament
+        // Then we record all
         $manager->flush();
-
-        */
     }
 
     public function getOrder() {
