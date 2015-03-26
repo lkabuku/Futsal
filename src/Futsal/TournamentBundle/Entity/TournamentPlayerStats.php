@@ -23,14 +23,14 @@ class TournamentPlayerStats
     /**
      * @var integer
      *
-     * @ORM\Column(name="nb_goals", type="smallint")
+     * @ORM\Column(name="nb_goals", type="smallint", nullable=true)
      */
     private $nbGoals;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="has_subscribed", type="smallint")
+     * @ORM\Column(name="has_subscribed", type="smallint", nullable=true)
      */
     private $hasSubscribed;
     

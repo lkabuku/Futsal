@@ -31,21 +31,21 @@ class Team
     /**
      * @var string
      *
-     * @ORM\Column(name="labelname", type="string", length=64)
+     * @ORM\Column(name="labelname", type="string", length=64, nullable=true)
      */
     private $labelname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="logo", type="string", length=3)
+     * @ORM\Column(name="logo", type="string", length=3, nullable=true)
      */
     private $logo;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_creation", type="date")
+     * @ORM\Column(name="date_creation", type="date", nullable=true)
      */
     private $dateCreation;
     

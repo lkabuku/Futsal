@@ -24,46 +24,51 @@ class Player
     /**
      * @var string
      *
-     * @ORM\Column(name="firstname", type="string", length=128)
+     * @ORM\Column(name="firstname", type="string", length=128, nullable=false)
      */
     private $firstname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lastname", type="string", length=128)
+     * @ORM\Column(name="lastname", type="string", length=128, nullable=true)
      */
     private $lastname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=128)
+     * @ORM\Column(name="username", type="string", length=128, nullable=false)
      */
     private $username;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
     private $email;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="birthday", type="date")
+     * @ORM\Column(name="birthday", type="date", nullable=true)
      */
     private $birthday;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="favorite_team", type="string", length=128)
+     * @ORM\Column(name="favorite_team", type="string", length=128, nullable=true)
      */
     private $favoriteTeam;
 
-
+    /**
+     * @ORM\OneToOne(targetEntity="Futsal\TournamentBundle\Entity\Team")
+     * @ORM\JoinColumn(name="team_id", referencedColumnName="id")
+     **/
+    private $team;
+    
     /**
      * Get id
      *
@@ -210,5 +215,28 @@ class Player
     public function getFavoriteTeam()
     {
         return $this->favoriteTeam;
+    }
+
+    /**
+     * Set team
+     *
+     * @param \Futsal\TournamentBundle\Entity\Team $team
+     * @return Player
+     */
+    public function setTeam(\Futsal\TournamentBundle\Entity\Team $team = null)
+    {
+        $this->team = $team;
+
+        return $this;
+    }
+
+    /**
+     * Get team
+     *
+     * @return \Futsal\TournamentBundle\Entity\Team 
+     */
+    public function getTeam()
+    {
+        return $this->team;
     }
 }

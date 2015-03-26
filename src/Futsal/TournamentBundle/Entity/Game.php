@@ -24,21 +24,21 @@ class Game
     /**
      * @var string
      *
-     * @ORM\Column(name="referee", type="string", length=128)
+     * @ORM\Column(name="referee", type="string", length=128, nullable=true)
      */
     private $referee;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\Column(name="date", type="datetime", nullable=true)
      */
     private $date;
     
     /**
      * @var integer
      *
-     * @ORM\Column(name="is_valid", type="smallint")
+     * @ORM\Column(name="is_valid", type="smallint", nullable=true)
      */
     private $isValid;
     
@@ -52,7 +52,7 @@ class Game
      */
     public function __construct()
     {
-        $this->teams = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->gameResults = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -166,4 +166,5 @@ class Game
     {
         return $this->gameResults;
     }
+
 }

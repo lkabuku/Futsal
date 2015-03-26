@@ -24,35 +24,35 @@ class Tournament
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=32)
+     * @ORM\Column(name="name", type="string", length=32, nullable=false)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="labelname", type="string", length=255)
+     * @ORM\Column(name="labelname", type="string", length=255, nullable=true)
      */
     private $labelname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=512)
+     * @ORM\Column(name="description", type="string", length=512, nullable=true)
      */
     private $description;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_begin", type="date")
+     * @ORM\Column(name="date_begin", type="date", nullable=true)
      */
     private $dateBegin;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_end", type="date")
+     * @ORM\Column(name="date_end", type="date", nullable=true)
      */
     private $dateEnd;
 

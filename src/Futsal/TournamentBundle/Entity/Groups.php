@@ -24,7 +24,7 @@ class Groups
     /**
      * @var integer
      *
-     * @ORM\Column(name="nb_qualified_teams", type="smallint")
+     * @ORM\Column(name="nb_qualified_teams", type="smallint", nullable=false)
      */
     private $nbQualifiedTeams;
 

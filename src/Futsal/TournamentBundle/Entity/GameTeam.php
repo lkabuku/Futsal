@@ -24,7 +24,7 @@ class GameTeam
     /**
      * @var integer
      *
-     * @ORM\Column(name="goals", type="smallint")
+     * @ORM\Column(name="goals", type="smallint", nullable=true)
      */
     private $goals;
 
@@ -39,8 +39,7 @@ class GameTeam
      * @ORM\JoinColumn(name="team_id", referencedColumnName="id")
     */
     private $team;
-    
-    
+
     /**
      * Get id
      *
@@ -49,29 +48,6 @@ class GameTeam
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set goal
-     *
-     * @param integer $goal
-     * @return GameTeam
-     */
-    public function setGoal($goal)
-    {
-        $this->goal = $goal;
-
-        return $this;
-    }
-
-    /**
-     * Get goal
-     *
-     * @return integer 
-     */
-    public function getGoal()
-    {
-        return $this->goal;
     }
 
     /**

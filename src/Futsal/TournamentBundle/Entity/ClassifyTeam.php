@@ -24,7 +24,7 @@ class ClassifyTeam
     /**
      * @var integer
      *
-     * @ORM\Column(name="position_group", type="smallint")
+     * @ORM\Column(name="position_group", type="smallint", nullable=true)
      */
     private $positionGroup;
 
