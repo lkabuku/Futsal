@@ -1,6 +1,6 @@
 security:
     encoders:
-        UserBundle\Entity\User:
+        Futsal\UserBundle\Entity\User:
             algorithm: sha512
             
     providers:
