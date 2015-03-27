@@ -1,0 +1,4 @@
+services:
+#    futsal_tournament.example:
+#        class: Futsal\TournamentBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,3 +1,7 @@
+futsal_tournament:
+    resource: "@FutsalTournamentBundle/Resources/config/routing.yml"
+    prefix:   /
+
 futsal_user:
     resource: "@FutsalUserBundle/Resources/config/routing.yml"
     prefix:   /
