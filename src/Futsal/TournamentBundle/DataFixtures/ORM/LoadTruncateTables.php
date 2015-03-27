@@ -10,7 +10,7 @@ class LoadTruncateTables extends AbstractFixture implements OrderedFixtureInterf
 {
     public function load(ObjectManager $manager)
     {       
-        $entities = array("Game", "GameTeam", "Player", "Team", "Tournament");
+        $entities = array("Game", "GameTeam", "Player", "Team", "Tournament", "TournamentPlayerStats");
         
         foreach($entities as $entity) {
             $cmd = $manager->getClassMetadata("Futsal\TournamentBundle\Entity\\".$entity);

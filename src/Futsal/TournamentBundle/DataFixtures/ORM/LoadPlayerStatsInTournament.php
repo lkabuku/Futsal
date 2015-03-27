@@ -29,16 +29,25 @@ class LoadPlayerStatsInTournament extends AbstractFixture implements OrderedFixt
                 $playersOneTeam = $manager->getRepository('FutsalTournamentBundle:Player')->findByTeam($idTeam);
                 
                 // Add Stats for players
+                $nbGoalsByTeam = 0;
+                
                 foreach($playersOneTeam as $player) {
+                    $nbGoals = rand(0, 10);
+                    $nbGoalsByTeam += $nbGoals;
+                    
                     $tournamentPlayerStats = new TournamentPlayerStats();
                     $tournamentPlayerStats->setPlayer($player);
                     $tournamentPlayerStats->setTournament($tournament);
                     $tournamentPlayerStats->setGame($game);
-                    $tournamentPlayerStats->setNbGoals(rand(0, 10));
+                    $tournamentPlayerStats->setNbGoals($nbGoals);
                     
                     // We persist id
                     $manager->persist($tournamentPlayerStats);
                 }
+                
+                $idGameTeam = $gameResult->getId();
+                $oneResult = $manager->getRepository('FutsalTournamentBundle:GameTeam')->find($idGameTeam);
+                $oneResult->setGoals($nbGoalsByTeam);
             }
         }
         

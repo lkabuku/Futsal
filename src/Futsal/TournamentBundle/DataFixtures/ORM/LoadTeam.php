@@ -14,12 +14,12 @@ class LoadTeam extends AbstractFixture implements OrderedFixtureInterface
         // Teams list to add        
         $names = array(
                 1 => array('rtc', 'RTC', 'rtc', '21/08/2014'),
-                2 => array('k5', 'K5', 'k5', '21/08/2014'),
-                3 => array('familyteam', 'fat', 'rtc', '21/08/2014'),
+                2 => array('k5', 'K5', 'k5x', '21/08/2014'),
+                3 => array('familyteam', 'Family Team', 'fat', '21/08/2014'),
                 4 => array('masia', 'Masia', 'mas', '21/08/2014'),
                 5 => array('psg', 'PSG', 'psg', '21/08/2014'),
-                6 => array('fcmoody', 'fcm', 'rtc', '21/08/2014'),
-                7 => array('teammills', 'tem', 'rtc', '21/08/2014'),
+                6 => array('fcmoody', 'FC Moody', 'fcm', '21/08/2014'),
+                7 => array('teammills', 'Team Mills', 'tem', '21/08/2014'),
                 8 => array('cergy', 'Cergy', 'cry', '21/08/2014'),
         );
         
