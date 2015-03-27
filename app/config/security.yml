@@ -6,9 +6,13 @@ security:
     providers:
         main:
             entity: { class: Futsal\UserBundle\Entity\User, property: username }
-
-    access_control:
-        - { path: ^/admin, roles: ROLE_ADMIN }
+    
+    #providers:
+    #    in_memory:
+    #        memory: ~
+    
+    #access_control:
+    #    - { path: ^/admin, roles: ROLE_ADMIN }
 
 
     firewalls:

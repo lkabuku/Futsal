@@ -2,3 +2,36 @@ services:
 #    futsal_tournament.example:
 #        class: Futsal\TournamentBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+
+    sonata.admin.player:
+        class: Futsal\TournamentBundle\Admin\PlayerAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Player" }
+        arguments:
+            - ~
+            - Futsal\TournamentBundle\Entity\Player
+            - ~
+        calls:
+            - [ setTranslationDomain, [FutsalTournamentBundle]]
+            
+    sonata.admin.team:
+        class: Futsal\TournamentBundle\Admin\TeamAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Team" }
+        arguments:
+            - ~
+            - Futsal\TournamentBundle\Entity\Team
+            - ~
+        calls:
+            - [ setTranslationDomain, [FutsalTournamentBundle]]
+            
+    sonata.admin.gameteam:
+        class: Futsal\TournamentBundle\Admin\GameTeamAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "GameTeam" }
+        arguments:
+            - ~
+            - Futsal\TournamentBundle\Entity\GameTeam
+            - ~
+        calls:
+            - [ setTranslationDomain, [FutsalTournamentBundle]]
