@@ -12,4 +12,29 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
+    public function loadUserByUsername($username)
+    {
+        $q = $this
+            ->createQueryBuilder('u')
+            ->select('u, r')
+            ->leftJoin('u.roles', 'r')
+            ->where('u.username = :username OR u.email = :email')
+            ->setParameter('username', $username)
+            ->setParameter('email', $username)
+            ->getQuery();
+
+        return $q;
+    }
+    
+    public function checkUserByUsernameAndPassword($username, $password) {
+        $q = $this
+                ->createQueryBuilder('u')
+                ->select('u')
+                ->where('u.username = :username AND u.password = :password')
+                ->setParameter('username', $username)
+                ->setParameter('password', $password)
+                ->getQuery();
+
+        return $q;
+    }
 }
