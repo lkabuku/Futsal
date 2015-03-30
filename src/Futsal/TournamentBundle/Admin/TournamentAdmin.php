@@ -1,5 +1,5 @@
 <?php
-// src/Futsal/TournamentBundle/Admin/GameTeamAdmin.php
+// src/Futsal/TournamentBundle/Admin/TournamentAdmin.php
 
 namespace Futsal\TournamentBundle\Admin;
 
@@ -8,22 +8,21 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class GameTeamAdmin extends Admin
+class TournamentAdmin extends Admin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('game', 'entity', array(
-                                            'class' => 'Futsal\TournamentBundle\Entity\Game',
+            ->add('name', 'text', array('label' => 'Name'))
+            ->add('labelname', 'text', array('label' => 'Label Name'))
+            ->add('description', 'text', array('label' => 'Descritpion'))
+            ->add('dateBegin', 'date')
+            ->add('dateEnd', 'date')
+            ->add('teamsSubscribed', 'entity', array(
+                                            'class' => 'Futsal\TournamentBundle\Entity\Team',
                                             'property' => 'id'
                                             )
                 )
-            ->add('team', 'entity', array(
-                                            'class' => 'Futsal\TournamentBundle\Entity\Team',
-                                            'property' => 'labelname',
-                                            )
-                )
-            ->add('goals', 'integer', array('label' => 'Goals'))
         ;
     }
 
@@ -31,7 +30,10 @@ class GameTeamAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('goals')
+            ->add('name')
+            ->add('labelname')
+            ->add('dateBegin')
+            ->add('dateEnd')
         ;
     }
 
@@ -39,20 +41,17 @@ class GameTeamAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('game', 'entity', array(
-                                            'class' => 'Futsal\TournamentBundle\Entity\Game',
-                                            'property' => 'id',
-                                            'associated_property' => 'id'
-                                            )
-                )
-            ->add('team', 'entity', array(
+            ->add('name')
+            ->add('labelname')
+            ->add('description')
+            ->add('dateBegin')
+            ->add('dateEnd')
+            ->add('teamsSubscribed', 'entity', array(
                                             'class' => 'Futsal\TournamentBundle\Entity\Team',
                                             'property' => 'id',
                                             'associated_property' => 'labelname'
                                             )
                 )
-            ->add('goals')
         ;
     }
 }
-

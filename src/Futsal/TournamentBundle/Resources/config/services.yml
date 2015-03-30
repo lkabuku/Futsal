@@ -35,3 +35,25 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [FutsalTournamentBundle]]
+            
+    sonata.admin.game:
+        class: Futsal\TournamentBundle\Admin\GameAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Game" }
+        arguments:
+            - ~
+            - Futsal\TournamentBundle\Entity\Game
+            - ~
+        calls:
+            - [ setTranslationDomain, [FutsalTournamentBundle]]
+
+    sonata.admin.tournament:
+        class: Futsal\TournamentBundle\Admin\TournamentAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Tournament" }
+        arguments:
+            - ~
+            - Futsal\TournamentBundle\Entity\Tournament
+            - ~
+        calls:
+            - [ setTranslationDomain, [FutsalTournamentBundle]]
