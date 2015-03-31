@@ -10,6 +10,11 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class GameTeamAdmin extends Admin
 {
+    public function getParentAssociationMapping()
+    {
+        return 'game';
+    }
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -42,7 +47,11 @@ class GameTeamAdmin extends Admin
             ->add('game', 'entity', array(
                                             'class' => 'Futsal\TournamentBundle\Entity\Game',
                                             'property' => 'id',
-                                            'associated_property' => 'id'
+                                            'associated_property' => 'id',
+                                            'route' => array(
+                                                            'name' => 'view',
+                                                            'identifier_parameter_name' => 'id'
+                                                            )
                                             )
                 )
             ->add('team', 'entity', array(
@@ -52,7 +61,20 @@ class GameTeamAdmin extends Admin
                                             )
                 )
             ->add('goals')
+            /*
+            ->add('id', 'url', array(
+                                    'route' => 
+                                        array(
+                                            'name' => 'admin_futsal_tournament_game_gameteam_list',
+                                            'parameters' => array('id' => 1),
+                                            'identifier_parameter_name' => 'game'
+                                            )
+                                    )
+                )
+            * 
+            */
         ;
+        //var_dump($listMapper);exit;
     }
 }
 

@@ -24,6 +24,18 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [FutsalTournamentBundle]]
+    
+    sonata.admin.game:
+        class: Futsal\TournamentBundle\Admin\GameAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Game" }
+        arguments:
+            - ~
+            - Futsal\TournamentBundle\Entity\Game
+            - 'FutsalTournamentBundle:GameCRUD'
+        calls:
+            - [ setTranslationDomain, [FutsalTournamentBundle]]
+            - [ addChild, [@sonata.admin.gameteam]]
             
     sonata.admin.gameteam:
         class: Futsal\TournamentBundle\Admin\GameTeamAdmin
@@ -32,17 +44,6 @@ services:
         arguments:
             - ~
             - Futsal\TournamentBundle\Entity\GameTeam
-            - ~
-        calls:
-            - [ setTranslationDomain, [FutsalTournamentBundle]]
-            
-    sonata.admin.game:
-        class: Futsal\TournamentBundle\Admin\GameAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Game" }
-        arguments:
-            - ~
-            - Futsal\TournamentBundle\Entity\Game
             - ~
         calls:
             - [ setTranslationDomain, [FutsalTournamentBundle]]

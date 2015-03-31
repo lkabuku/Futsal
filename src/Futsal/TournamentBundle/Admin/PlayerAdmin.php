@@ -19,10 +19,9 @@ class PlayerAdmin extends Admin
             ->add('email', 'text', array('label' => 'E-mail'))
             ->add('birthday', 'date', array(
                                         'label' => 'Birthday',
-                                        'attr' => array("width" => "33%"),
-                    
-                                    )
-            )
+                                        'attr' => array('data-sonata-select2' => 'false')
+                                )
+                )
             ->add('favorite_team', 'text', array('label' => 'Favorite Team'))
         ;
     }
@@ -40,6 +39,7 @@ class PlayerAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->addIdentifier("id")
             ->add('firstname')
             ->add('lastname')
             ->add('username')

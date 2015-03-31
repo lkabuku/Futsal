@@ -16,7 +16,10 @@ class TeamAdmin extends Admin
             ->add('name', 'text', array('label' => 'First Name'))
             ->add('labelname', 'text', array('label' => 'Last Name'))
             ->add('logo', 'text', array('label' => 'User Name'))
-            ->add('dateCreation', 'date', array('label' => 'Creation date'))
+            ->add('dateCreation', 'date', array('label' => 'Creation date',
+                                                'attr' => array('data-sonata-select2' => 'false')
+                                )
+                )
         ;
     }
 
@@ -34,6 +37,7 @@ class TeamAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->addIdentifier("id")
             ->add('name')
             ->add('labelname')
             ->add('logo')

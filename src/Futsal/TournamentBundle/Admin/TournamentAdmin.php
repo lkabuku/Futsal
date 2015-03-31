@@ -16,11 +16,19 @@ class TournamentAdmin extends Admin
             ->add('name', 'text', array('label' => 'Name'))
             ->add('labelname', 'text', array('label' => 'Label Name'))
             ->add('description', 'text', array('label' => 'Descritpion'))
-            ->add('dateBegin', 'date')
-            ->add('dateEnd', 'date')
+            ->add('dateBegin', 'date', array(
+                                            'label' => 'Begin date',
+                                            'attr' => array('data-sonata-select2' => 'false')
+                                )
+                )
+            ->add('dateEnd', 'date', array(
+                                            'label' => 'End date',
+                                            'attr' => array('data-sonata-select2' => 'false')
+                                    )
+                )
             ->add('teamsSubscribed', 'entity', array(
                                             'class' => 'Futsal\TournamentBundle\Entity\Team',
-                                            'property' => 'id'
+                                            'property' => 'id',
                                             )
                 )
         ;
@@ -41,6 +49,7 @@ class TournamentAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->addIdentifier("id")
             ->add('name')
             ->add('labelname')
             ->add('description')
@@ -49,7 +58,8 @@ class TournamentAdmin extends Admin
             ->add('teamsSubscribed', 'entity', array(
                                             'class' => 'Futsal\TournamentBundle\Entity\Team',
                                             'property' => 'id',
-                                            'associated_property' => 'labelname'
+                                            'associated_property' => 'labelname',
+                                            'editable' => true,
                                             )
                 )
         ;
