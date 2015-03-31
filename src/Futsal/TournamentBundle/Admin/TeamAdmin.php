@@ -13,11 +13,11 @@ class TeamAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name', 'text', array('label' => 'First Name'))
-            ->add('labelname', 'text', array('label' => 'Last Name'))
-            ->add('logo', 'text', array('label' => 'User Name'))
-            ->add('dateCreation', 'date', array('label' => 'Creation date',
-                                                'attr' => array('data-sonata-select2' => 'false')
+            ->add('name', 'text', array('label' => 'Name'))
+            ->add('labelname', 'text', array('label' => 'Label name'))
+            ->add('logo', 'text', array('label' => 'Logo'))
+            ->add('dateCreation', 'date', array('label' => 'Fondation date',
+                                                'attr' => array('data-sonata-select2' => false)
                                 )
                 )
         ;

@@ -13,13 +13,30 @@ class PlayerAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('firstname', 'text', array('label' => 'First Name'))
-            ->add('lastname', 'text', array('label' => 'Last Name'))
-            ->add('username', 'text', array('label' => 'User Name'))
-            ->add('email', 'text', array('label' => 'E-mail'))
+            ->add('firstname', 'text', array(
+                                            'label' => 'First Name',
+                                            'required' => false
+                                            )
+                )
+            ->add('lastname', 'text', array(
+                                            'label' => 'Last Name',
+                                            'required' => false
+                                            )
+                )
+            ->add('username', 'text', array(
+                                            'label' => 'User Name',
+                                            'required' => false
+                                            )
+                )
+            ->add('email', 'text', array(
+                                        'label' => 'E-mail',
+                                        'required' => false
+                                        )
+                )
             ->add('birthday', 'date', array(
-                                        'label' => 'Birthday',
-                                        'attr' => array('data-sonata-select2' => 'false')
+                                            'label' => 'Birthday',
+                                            'attr' => array('data-sonata-select2' => false),
+                                            'required' => false
                                 )
                 )
             ->add('favorite_team', 'text', array('label' => 'Favorite Team'))

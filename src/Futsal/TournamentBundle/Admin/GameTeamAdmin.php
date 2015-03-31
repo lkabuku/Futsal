@@ -28,7 +28,11 @@ class GameTeamAdmin extends Admin
                                             'property' => 'labelname',
                                             )
                 )
-            ->add('goals', 'integer', array('label' => 'Goals'))
+            ->add('goals', 'integer', array(
+                                            'label' => 'Goals',
+                                            'required' => false
+                                            )
+                )
         ;
     }
 
@@ -61,20 +65,7 @@ class GameTeamAdmin extends Admin
                                             )
                 )
             ->add('goals')
-            /*
-            ->add('id', 'url', array(
-                                    'route' => 
-                                        array(
-                                            'name' => 'admin_futsal_tournament_game_gameteam_list',
-                                            'parameters' => array('id' => 1),
-                                            'identifier_parameter_name' => 'game'
-                                            )
-                                    )
-                )
-            * 
-            */
         ;
-        //var_dump($listMapper);exit;
     }
 }
 

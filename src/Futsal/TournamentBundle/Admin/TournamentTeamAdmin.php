@@ -1,5 +1,5 @@
 <?php
-// src/Futsal/TournamentBundle/Admin/TournamentAdmin.php
+// src/Futsal/TournamentBundle/Admin/TournamentTeamAdmin.php
 
 namespace Futsal\TournamentBundle\Admin;
 
@@ -8,26 +8,13 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class TournamentAdmin extends Admin
+class TournamentTeamAdmin extends Admin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name', 'text', array('label' => 'Name'))
-            ->add('labelname', 'text', array('label' => 'Label Name'))
-            ->add('description', 'text', array('label' => 'Descritpion'))
-            ->add('dateBegin', 'date', array(
-                                            'label' => 'Begin date',
-                                            'attr' => array('data-sonata-select2' => false)
-                                )
-                )
-            ->add('dateEnd', 'date', array(
-                                            'label' => 'End date',
-                                            'attr' => array('data-sonata-select2' => false)
-                                    )
-                )
             /*
-            ->add('teamsSubscribed', 'sonata_type_collection', 
+            ->add('team', 'sonata_type_collection', 
                     array(
                         'type_options' => array(
                                             // Prevents the "Delete" option from being displayed
@@ -49,15 +36,17 @@ class TournamentAdmin extends Admin
                                 )
                 )
              * 
-             */
-            /*    
-            ->add('teamsSubscribed', 'entity', array(
+             */    
+            ->add('team', 'entity', array(
                                             'class' => 'Futsal\TournamentBundle\Entity\Team',
-                                            'property' => 'id',
+                                            'property' => 'name',
                                             )
                 )
-             * 
-             */
+            ->add('tournament', 'entity', array(
+                                            'class' => 'Futsal\TournamentBundle\Entity\Tournament',
+                                            'property' => 'labelname',
+                                            )
+                )
         ;
     }
 
@@ -65,10 +54,7 @@ class TournamentAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name')
-            ->add('labelname')
-            ->add('dateBegin')
-            ->add('dateEnd')
+            ->add('id')
         ;
     }
 
@@ -77,21 +63,20 @@ class TournamentAdmin extends Admin
     {
         $listMapper
             ->addIdentifier("id")
-            ->add('name')
-            ->add('labelname')
-            ->add('description')
-            ->add('dateBegin')
-            ->add('dateEnd')
-            /*
-            ->add('teamsSubscribed', 'entity', array(
+            ->add('team', 'entity', array(
                                             'class' => 'Futsal\TournamentBundle\Entity\Team',
                                             'property' => 'id',
-                                            'associated_property' => 'labelname',
+                                            'associated_property' => 'name',
                                             'editable' => true,
                                             )
                 )
-             * 
-             */
+            ->add('tournament', 'entity', array(
+                                            'class' => 'Futsal\TournamentBundle\Entity\Tournament',
+                                            'property' => 'id',
+                                            'associated_property' => 'name',
+                                            'editable' => true,
+                                            )
+                )
         ;
     }
 }
