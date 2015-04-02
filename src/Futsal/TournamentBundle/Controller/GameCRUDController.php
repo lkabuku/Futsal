@@ -30,8 +30,8 @@ class GameCRUDController extends CRUDController
         $datagrid = $this->admin->getDatagrid();
         $formView = $datagrid->getForm()->createView();
         
-        $helperListGame = $this->get('templating.helper.listgame');
-        $helperListGame->execute($datagrid->getResults());
+        ///$helperListGame = $this->get('templating.helper.listgame');
+        //$helperListGame->execute($datagrid->getResults());
         
         // set the theme for the current Admin Form
         $this->get('twig')->getExtension('form')->renderer->setTheme($formView, $this->admin->getFilterTheme());

@@ -78,16 +78,6 @@ file that was distributed with this source code.
                                 {% for object in admin.datagrid.results %}
                                     <tr>
                                         {% include admin.getTemplate('inner_list_row') %}
-                                        
-                                        <td>
-                                            {% for result in object.GameResults %}
-                                                {% if(loop.first) %}
-                                                    {{ result.team.labelname }} {{ result.goals }} - 
-                                                {% else %}
-                                                   {{ result.goals }} {{ result.team.labelname }}
-                                                {% endif %} 
-                                            {% endfor %}
-                                        </td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
@@ -200,25 +190,6 @@ file that was distributed with this source code.
 
         </div>
     </div>
-    <table class="table table-bordered table-striped">
-        {% for game in admin.datagrid.results %}
-        <tr>
-            <td>Match n°{{ game.id }}</td>
-            <td>{{ game.referee }}</td>
-            <td>{{ game.date | date }}</td>
-            <td>{{ game.isValid }}</td>
-            <td>
-            {% for result in game.GameResults %}
-                {% if(loop.first) %}
-                    {{ result.team.labelname }} {{ result.goals }} - 
-                {% else %}
-                   {{ result.goals }} {{ result.team.labelname }}
-                {% endif %} 
-            {% endfor %}
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
 {% endblock %}
 
 {% block list_filters %}

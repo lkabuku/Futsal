@@ -20,6 +20,7 @@ class GameAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->with('General', array('description' => 'This section contains general settings for the game'))
             ->add('referee', 'text', array(
                                         'label' => 'Referee',
                                         'required' => false
@@ -40,25 +41,30 @@ class GameAdmin extends Admin
                 )
              * 
              */
-            ->add('gameResults', 'sonata_type_collection', array(
-                'type_options' => array(
-                    // Prevents the "Delete" option from being displayed
-                    'delete' => false,
-                    'delete_options' => array(
-                        // You may otherwise choose to put the field but hide it
-                        'type'         => 'hidden',
-                        // In that case, you need to fill in the options as well
-                        'type_options' => array(
-                            'mapped'   => false,
-                            'required' => false,
+            ->add('gameResults', 'sonata_type_collection', 
+                array(
+                    'type_options' => 
+                        array(
+                            // Prevents the "Delete" option from being displayed
+                            'delete' => false,
+                            'delete_options' => 
+                                array(
+                                    // You may otherwise choose to put the field but hide it
+                                    'type'         => 'hidden',
+                                    // In that case, you need to fill in the options as well
+                                    'type_options' => 
+                                        array(
+                                            'mapped'   => false,
+                                            'required' => false,
+                                        )
+                                )
                         )
+                ),  array(
+                        'edit' => 'inline',
+                        'inline' => 'table',
+                        'sortable' => 'position',
                     )
-                )
-            ), array(
-                'edit' => 'inline',
-                'inline' => 'table',
-                'sortable' => 'position',
-            ))
+            )
         ;
     }
 
@@ -66,6 +72,7 @@ class GameAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
+            ->add('referee')
             ->add('date')
             ->add('isValid')
         ;
@@ -82,9 +89,11 @@ class GameAdmin extends Admin
             ->add('gameResults', 'entity', array(
                                             'class' => 'Futsal\TournamentBundle\Entity\GameTeam',
                                             'property' => 'id',
-                                            'associated_property' => 'id'
+                                            'associated_property' => 'id',
+                                            'template' => 'FutsalTournamentBundle:Admin:list__gameResults.html.twig'
                                             )
                 )
+            //->add('gameResults', null, array('associated_tostring' => 'getGameResults'))
             ->add('_action', 'actions', array(
                 'actions' => array(
                 'edit' => array(),
@@ -92,5 +101,18 @@ class GameAdmin extends Admin
         ))
         ;
     }
+
+    public function createQuery($context = 'list')
+    {
+        $query = parent::createQuery($context);
+        /*
+        $query->andWhere(
+            $query->expr()->eq($query->getRootAliases()[0] . '.id', ':id')
+        );
+        $query->setParameter('id', 1);
+        */
+        return $query;
+    }
+
 }
 

@@ -17,16 +17,13 @@ class ListGameTeamHelper extends Helper
         $results = $data;
         
         foreach($results as $result) {
-            /*
             echo $result->getId();
             echo $result->getGoals();
             echo $result->getGame()->getId();
             echo $result->getGame()->getReferee();
             echo $result->getGame()->getDate();
             echo $result->getGame()->getIsValid();
-            var_dump($result->getGame()->getGameResults()->toArray());
-             * 
-             */
+            //var_dump($result->getGame()->getGameResults()->toArray());
         }
         
         return "";

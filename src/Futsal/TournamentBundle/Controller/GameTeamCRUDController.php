@@ -31,8 +31,8 @@ class GameTeamCRUDController extends CRUDController
         $datagrid = $this->admin->getDatagrid();
         $formView = $datagrid->getForm()->createView();
         
-        $helperListGameTeam = $this->get('templating.helper.listgameteam');
-        $helperListGameTeam->execute($datagrid->getResults());
+        //$helperListGameTeam = $this->get('templating.helper.listgameteam');
+        //$helperListGameTeam->execute($datagrid->getResults());
         
         // set the theme for the current Admin Form
         $this->get('twig')->getExtension('form')->renderer->setTheme($formView, $this->admin->getFilterTheme());

@@ -6,7 +6,7 @@ services:
     sonata.admin.player:
         class: Futsal\TournamentBundle\Admin\PlayerAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Player" }
+            - { name: sonata.admin, manager_type: orm, group: "Admin Player", label: "Player" }
         arguments:
             - ~
             - Futsal\TournamentBundle\Entity\Player
@@ -17,7 +17,7 @@ services:
     sonata.admin.team:
         class: Futsal\TournamentBundle\Admin\TeamAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Team" }
+            - { name: sonata.admin, manager_type: orm, group: "Admin Team", label: "Team" }
         arguments:
             - ~
             - Futsal\TournamentBundle\Entity\Team
@@ -28,7 +28,7 @@ services:
     sonata.admin.game:
         class: Futsal\TournamentBundle\Admin\GameAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Game" }
+            - { name: sonata.admin, manager_type: orm, group: "Admin Game", label: "Game" }
         arguments:
             - ~
             - Futsal\TournamentBundle\Entity\Game
@@ -42,7 +42,7 @@ services:
     sonata.admin.gameteam:
         class: Futsal\TournamentBundle\Admin\GameTeamAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Content", label: "GameTeam" }
+            - { name: sonata.admin, manager_type: orm, group: "Admin Results", label: "GameTeam" }
         arguments:
             - ~
             - Futsal\TournamentBundle\Entity\GameTeam
@@ -54,7 +54,7 @@ services:
     sonata.admin.tournament:
         class: Futsal\TournamentBundle\Admin\TournamentAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Tournament" }
+            - { name: sonata.admin, manager_type: orm, group: "Admin Tournament", label: "Tournament" }
         arguments:
             - ~
             - Futsal\TournamentBundle\Entity\Tournament
@@ -65,7 +65,7 @@ services:
     sonata.admin.tournamentteam:
         class: Futsal\TournamentBundle\Admin\TournamentTeamAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Content", label: "TournamentTeam" }
+            - { name: sonata.admin, manager_type: orm, group: "Admin Team Subscription", label: "TournamentTeam" }
         arguments:
             - ~
             - Futsal\TournamentBundle\Entity\TournamentTeam

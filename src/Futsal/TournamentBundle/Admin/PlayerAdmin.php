@@ -40,6 +40,11 @@ class PlayerAdmin extends Admin
                                 )
                 )
             ->add('favorite_team', 'text', array('label' => 'Favorite Team'))
+            ->add('team', 'entity', array(
+                                            'class' => 'Futsal\TournamentBundle\Entity\Team',
+                                            'property' => 'labelname',
+                                            )
+                )
         ;
     }
 
@@ -49,6 +54,7 @@ class PlayerAdmin extends Admin
         $datagridMapper
             ->add('firstname')
             ->add('lastname')
+            ->add('team.labelname')
         ;
     }
 
@@ -61,6 +67,13 @@ class PlayerAdmin extends Admin
             ->add('lastname')
             ->add('username')
             ->add('birthday')
+            ->add('team', 'entity', array(
+                                            'class' => 'Futsal\TournamentBundle\Entity\Team',
+                                            'property' => 'id',
+                                            'associated_property' => 'team.labelname',
+                                            'editable' => true,
+                                            )
+                )
         ;
     }
 }

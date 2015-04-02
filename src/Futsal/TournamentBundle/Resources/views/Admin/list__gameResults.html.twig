@@ -1,0 +1,13 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field %}
+    <div>
+        {% for result in object.GameResults %}
+            {% if(loop.first) %}
+                <span class="info">{{ result.team.labelname }}</span> {{ result.goals }} - 
+            {% else %}
+                <span class="info">{{ result.goals }}</span> {{ result.team.labelname }}
+            {% endif %} 
+        {% endfor %}
+    </div>
+{% endblock %}
