@@ -7,9 +7,9 @@ _sonata_admin:
     type: sonata_admin
     prefix: /admin
 
-#futsal_tournament:
-#    resource: "@FutsalTournamentBundle/Resources/config/routing.yml"
-#    prefix:   /
+futsal_tournament:
+    resource: "@FutsalTournamentBundle/Resources/config/routing.yml"
+    prefix:   /
 
 #futsal_user:
 #    resource: "@FutsalUserBundle/Resources/config/routing.yml"

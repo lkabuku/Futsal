@@ -55,6 +55,8 @@ class TournamentTeamAdmin extends Admin
     {
         $datagridMapper
             ->add('id')
+            ->add('team.name', array(), array('expanded' => false, 'multiple' => false))
+            ->add('tournament.name')
         ;
     }
 
@@ -73,7 +75,7 @@ class TournamentTeamAdmin extends Admin
             ->add('tournament', 'entity', array(
                                             'class' => 'Futsal\TournamentBundle\Entity\Tournament',
                                             'property' => 'id',
-                                            'associated_property' => 'name',
+                                            'associated_property' => 'labelname',
                                             'editable' => true,
                                             )
                 )
