@@ -100,11 +100,6 @@ sonata_admin:
         
     dashboard:
         blocks:
-            -   position: top
-                type: sonata.block.service.text
-                settings:
-                    content: 
-                        <h1>Welcome to the Tournament BO</h1>
             -
                 position: left
                 type: sonata.admin.block.admin_list
