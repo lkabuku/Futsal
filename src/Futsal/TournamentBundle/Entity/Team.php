@@ -49,7 +49,10 @@ class Team
      */
     private $dateCreation;
     
-    
+    /**
+     * @ORM\OneToMany(targetEntity="Futsal\TournamentBundle\Entity\Player", mappedBy="player")
+     **/
+    private $players;//Players in team
 
     /**
      * Get id
@@ -151,5 +154,46 @@ class Team
     public function getDateCreation()
     {
         return $this->dateCreation;
+    }
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->players = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add players
+     *
+     * @param \Futsal\TournamentBundle\Entity\Player $players
+     * @return Team
+     */
+    public function addPlayer(\Futsal\TournamentBundle\Entity\Player $players)
+    {
+        $this->players[] = $players;
+
+        return $this;
+    }
+
+    /**
+     * Remove players
+     *
+     * @param \Futsal\TournamentBundle\Entity\Player $players
+     */
+    public function removePlayer(\Futsal\TournamentBundle\Entity\Player $players)
+    {
+        $this->players->removeElement($players);
+    }
+
+    /**
+     * Get players
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPlayers()
+    {
+        return $this->players;
     }
 }

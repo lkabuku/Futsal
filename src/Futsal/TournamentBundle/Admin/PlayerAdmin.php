@@ -70,7 +70,7 @@ class PlayerAdmin extends Admin
             ->add('team', 'entity', array(
                                             'class' => 'Futsal\TournamentBundle\Entity\Team',
                                             'property' => 'id',
-                                            'associated_property' => 'team.labelname',
+                                            'associated_property' => 'labelname',
                                             'editable' => true,
                                             )
                 )

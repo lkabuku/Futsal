@@ -67,5 +67,21 @@ class GameTeamAdmin extends Admin
             ->add('goals')
         ;
     }
+    
+    public function createQuery($context = 'list')
+    {
+        $query = parent::createQuery($context);
+        //$query->groupBy($query->getRootAliases()[0] . '.game');
+        
+        /*
+        $query->andWhere(
+            $query->expr()->eq($query->getRootAliases()[0] . '.game', ':id')
+        );
+        $query->setParameter('id', 1);
+        */
+        
+        return $query;
+    }
+    
 }
 
