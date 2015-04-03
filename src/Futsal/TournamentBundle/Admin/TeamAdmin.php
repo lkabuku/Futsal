@@ -10,20 +10,33 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class TeamAdmin extends Admin
 {
+    
+    /**
+     * Configures fields to be shown on create/edit forms
+     * 
+     * @param \Sonata\AdminBundle\Form\FormMapper $formMapper
+     * @return void
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
             ->add('name', 'text', array('label' => 'Name'))
             ->add('labelname', 'text', array('label' => 'Label name'))
             ->add('logo', 'text', array('label' => 'Logo'))
-            ->add('dateCreation', 'date', array('label' => 'Fondation date',
-                                                'attr' => array('data-sonata-select2' => false)
-                                )
+            ->add('dateCreation', null, array(
+                                            'label' => 'Fondation date',
+                                            'attr' => array('data-sonata-select2' => false)
+                                            )
                 )
         ;
     }
 
-    // Fields to be shown on filter forms
+    /**
+     * Configures fields to be shown on filter forms
+     * 
+     * @param \Sonata\AdminBundle\Datagrid\DatagridMapper $datagridMapper
+     * @return void
+     */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
@@ -33,7 +46,12 @@ class TeamAdmin extends Admin
         ;
     }
 
-    // Fields to be shown on lists
+    /**
+     * Configures fields to be shown on lists
+     * 
+     * @param \Sonata\AdminBundle\Datagrid\ListMapper $listMapper
+     * @return void
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper

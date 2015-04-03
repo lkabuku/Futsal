@@ -90,7 +90,7 @@ sonata_block:
             
 sonata_admin:
     options:
-        use_select2: false
+        use_select2: 
         
     templates:
         dashboard: SonataAdminBundle:Core:dashboard.html.twig
@@ -99,7 +99,12 @@ sonata_admin:
         search_result_block: SonataAdminBundle:Block:block_search_result.html.twig
         
     dashboard:
-        blocks:               
+        blocks:
+            -   position: top
+                type: sonata.block.service.text
+                settings:
+                    content: 
+                        <h1>Welcome to the Tournament BO</h1>
             -
                 position: left
                 type: sonata.admin.block.admin_list

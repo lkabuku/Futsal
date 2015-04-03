@@ -64,7 +64,7 @@ class Player
     private $favoriteTeam;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Futsal\TournamentBundle\Entity\Team", inversedBy="team")
+     * @ORM\ManyToOne(targetEntity="Futsal\TournamentBundle\Entity\Team", inversedBy="players")
      * @ORM\JoinColumn(name="team_id", referencedColumnName="id")
      **/
     private $team;

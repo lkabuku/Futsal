@@ -10,11 +10,22 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class GameTeamAdmin extends Admin
 {
+    /*
+     * Create child admins (Here => GameTeamAdmin class become a child of GameAdmin and then others routes are created, for example /gameteam/{id}/game/list)
+     *  
+     * @return String
+     */
     public function getParentAssociationMapping()
     {
         return 'game';
     }
-
+    
+    /**
+     * Configures fields to be shown on create/edit forms
+     * 
+     * @param \Sonata\AdminBundle\Form\FormMapper $formMapper
+     * @return void
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -36,15 +47,27 @@ class GameTeamAdmin extends Admin
         ;
     }
 
-    // Fields to be shown on filter forms
+    /**
+     * Configures fields to be shown on filter forms
+     * 
+     * @param \Sonata\AdminBundle\Datagrid\DatagridMapper $datagridMapper
+     * @return void
+     */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
+            ->add('game.id')
+            ->add('team.id')
             ->add('goals')
         ;
     }
 
-    // Fields to be shown on lists
+    /**
+     * Configures fields to be shown on lists
+     * 
+     * @param \Sonata\AdminBundle\Datagrid\ListMapper $listMapper
+     * @return void
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
@@ -68,20 +91,19 @@ class GameTeamAdmin extends Admin
         ;
     }
     
+    /*
     public function createQuery($context = 'list')
     {
         $query = parent::createQuery($context);
-        //$query->groupBy($query->getRootAliases()[0] . '.game');
         
-        /*
         $query->andWhere(
             $query->expr()->eq($query->getRootAliases()[0] . '.game', ':id')
         );
         $query->setParameter('id', 1);
-        */
         
         return $query;
     }
+    */
     
 }
 

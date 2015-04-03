@@ -50,7 +50,7 @@ class Team
     private $dateCreation;
     
     /**
-     * @ORM\OneToMany(targetEntity="Futsal\TournamentBundle\Entity\Player", mappedBy="player")
+     * @ORM\OneToMany(targetEntity="Futsal\TournamentBundle\Entity\Player", mappedBy="team")
      **/
     private $players;//Players in team
 

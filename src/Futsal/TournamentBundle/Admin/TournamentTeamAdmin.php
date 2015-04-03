@@ -10,33 +10,16 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class TournamentTeamAdmin extends Admin
 {
+    
+    /**
+     * Configures fields to be shown on create/edit forms
+     * 
+     * @param \Sonata\AdminBundle\Form\FormMapper $formMapper
+     * @return void
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $formMapper
-            /*
-            ->add('team', 'sonata_type_collection', 
-                    array(
-                        'type_options' => array(
-                                            // Prevents the "Delete" option from being displayed
-                                            'delete' => true,
-                                            'delete_options' => array(
-                                                                    // You may otherwise choose to put the field but hide it
-                                                                    'type'         => 'hidden',
-                                                                    // In that case, you need to fill in the options as well
-                                                                    'type_options' => array(
-                                                                                            'mapped'   => false,
-                                                                                            'required' => false,
-                                                                                            )
-                                                                    )
-                                            )
-                        ), array(
-                                'edit' => 'inline',
-                                'inline' => 'table',
-                                'sortable' => 'position',
-                                )
-                )
-             * 
-             */    
+        $formMapper   
             ->add('team', 'entity', array(
                                             'class' => 'Futsal\TournamentBundle\Entity\Team',
                                             'property' => 'name',
@@ -50,7 +33,12 @@ class TournamentTeamAdmin extends Admin
         ;
     }
 
-    // Fields to be shown on filter forms
+    /**
+     * Configures fields to be shown on filter forms
+     * 
+     * @param \Sonata\AdminBundle\Datagrid\DatagridMapper $datagridMapper
+     * @return void
+     */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
@@ -60,7 +48,12 @@ class TournamentTeamAdmin extends Admin
         ;
     }
 
-    // Fields to be shown on lists
+    /**
+     * Configures fields to be shown on lists
+     * 
+     * @param \Sonata\AdminBundle\Datagrid\ListMapper $listMapper
+     * @return void
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper

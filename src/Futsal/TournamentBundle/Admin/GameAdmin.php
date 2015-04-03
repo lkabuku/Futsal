@@ -12,15 +12,28 @@ use Sonata\AdminBundle\Route\RouteCollection;
 
 class GameAdmin extends Admin
 {
+
+    /**
+     * Sets routes to be added on the routing
+     * 
+     * @param \Sonata\AdminBundle\Route\RouteCollection $collection
+     * 
+     * @return void
+     */
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->add('view', $this->getRouterIdParameter().'/view');
     }
     
+    /**
+     * Configures fields to be shown on create/edit forms
+     * 
+     * @param \Sonata\AdminBundle\Form\FormMapper $formMapper
+     * @return void
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General', array('description' => 'This section contains general settings for the game'))
             ->add('referee', 'text', array(
                                         'label' => 'Referee',
                                         'required' => false
@@ -33,25 +46,15 @@ class GameAdmin extends Admin
                                         )
                 )
             ->add('isValid', 'integer', array('required' => false))
-            /*
-            ->add('gameResults', 'entity', array(
-                                            'class' => 'Futsal\TournamentBundle\Entity\GameTeam',
-                                            'property' => 'id'
-                                            )
-                )
-             * 
-             */
+            // sonata_type_collection => add a link_add
             ->add('gameResults', 'sonata_type_collection', 
                 array(
                     'type_options' => 
                         array(
-                            // Prevents the "Delete" option from being displayed
                             'delete' => false,
                             'delete_options' => 
                                 array(
-                                    // You may otherwise choose to put the field but hide it
                                     'type'         => 'hidden',
-                                    // In that case, you need to fill in the options as well
                                     'type_options' => 
                                         array(
                                             'mapped'   => false,
@@ -65,10 +68,23 @@ class GameAdmin extends Admin
                         'sortable' => 'position',
                     )
             )
+            /*
+            ->add('gameResults', 'entity', array(
+                                            'class' => 'Futsal\TournamentBundle\Entity\GameTeam',
+                                            'property' => 'id'
+                                            )
+                )
+             * 
+             */
         ;
     }
 
-    // Fields to be shown on filter forms
+    /**
+     * Configures fields to be shown on filter forms
+     * 
+     * @param \Sonata\AdminBundle\Datagrid\DatagridMapper $datagridMapper
+     * @return void
+     */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
@@ -78,7 +94,12 @@ class GameAdmin extends Admin
         ;
     }
 
-    // Fields to be shown on lists
+    /**
+     * Configures fields to be shown on lists
+     * 
+     * @param \Sonata\AdminBundle\Datagrid\ListMapper $listMapper
+     * @return void
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
@@ -90,10 +111,10 @@ class GameAdmin extends Admin
                                             'class' => 'Futsal\TournamentBundle\Entity\GameTeam',
                                             'property' => 'id',
                                             'associated_property' => 'id',
+                                            //@param template => Determines the template to use for this field
                                             'template' => 'FutsalTournamentBundle:Admin:list__gameResults.html.twig'
                                             )
                 )
-            //->add('gameResults', null, array('associated_tostring' => 'getGameResults'))
             ->add('_action', 'actions', array(
                 'actions' => array(
                 'edit' => array(),
@@ -101,18 +122,19 @@ class GameAdmin extends Admin
         ))
         ;
     }
-
+    
+    /*
     public function createQuery($context = 'list')
     {
         $query = parent::createQuery($context);
-        /*
+
         $query->andWhere(
             $query->expr()->eq($query->getRootAliases()[0] . '.id', ':id')
         );
         $query->setParameter('id', 1);
-        */
+
         return $query;
     }
-
+    */
 }
 
