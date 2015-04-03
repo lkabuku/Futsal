@@ -119,3 +119,18 @@ sonata_admin:
                 settings:
                     title: Sonata Project's Feeds
                     url: http://sonata-project.org/blog/archive.rss
+        
+        groups:
+            sonata.admin.player.content:
+                label : "Player"
+                items:
+                    - sonata.admin.player
+            sonata.admin.team.content:
+                label : "Team"
+            sonata.admin.game.content:
+                label : "Game"
+            sonata.admin.tournament.content:
+                label : "Tournament"
+            sonata.admin.tournamentteam.content:
+                label : "Tournament team"
+          
