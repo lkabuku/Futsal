@@ -13,10 +13,8 @@ class LoadTournament extends AbstractFixture implements OrderedFixtureInterface
     {
         // Tournament list to add
         $tournamentList = array(
-                    0 => array("lundi20_0914", "Championnat du Lundi à 20h - Session Septembre 2014"),
-                    1 => array("lundi21_0914", "Championnat du Lundi à 21h - Session Septembre 2014"),
-                    2 => array("lundi20_0915", "Championnat du Lundi à 20h - Session Septembre 2015"),
-                    3 => array("lundi21_0915", "Championnat du Lundi à 21h - Session Septembre 2015"),
+                    0 => array("lundi20_0315", "Championnat du Lundi à 20h - Session Mars 2015"),
+                    1 => array("lundi21_0315", "Championnat du Lundi à 21h - Session Mars 2015"),
                 );
         
         foreach($tournamentList as $item) {

@@ -14,10 +14,14 @@ class LoadGames extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {       
         $matchs = array(
-                    0 => array(1, 2),
-                    1 => array(3, 4),
-                    2 => array(5, 6),
-                    3 => array(7, 8),
+                    0 => array(1, 2, "Tony Chapron",0),
+                    1 => array(3, 4, "Saïd Ennjimi",0),
+                    2 => array(5, 6, "Clément Turpin",1),
+                    3 => array(7, 8, "Stéphane Lannoy",1),
+                    4 => array(9, 10, "Philippe Kalt",0),
+                    5 => array(11, 12, "Lionel Jaffredo",1),
+                    6 => array(13, 14, "Frédy Fautrel",0),
+                    7 => array(15, 16, "Wilfried Bien",1),
                 );
         
         foreach ($matchs as $match) {                   
@@ -37,6 +41,8 @@ class LoadGames extends AbstractFixture implements OrderedFixtureInterface
                 $game = new Game();
                 $game->addGameResult($gameResult1);
                 $game->addGameResult($gameResult2);
+                $game->setReferee($match[2]);
+                $game->setIsValid($match[3]);
                 
                 // Set the id_match for 2 teams
                 $gameResult1->setGame($game);

@@ -28,6 +28,11 @@ class LoadPlayerStatsInTournament extends AbstractFixture implements OrderedFixt
                 // Get all players who belong to a team
                 $playersOneTeam = $manager->getRepository('FutsalTournamentBundle:Player')->findByTeam($idTeam);
                 
+                
+                // Add stats for players
+                $nbGoalsByTeam = $this->treatPlayersStats($playersOneTeam, $tournament, $game, $manager);
+                
+                /*
                 // Add Stats for players
                 $nbGoalsByTeam = 0;
                 
@@ -44,6 +49,7 @@ class LoadPlayerStatsInTournament extends AbstractFixture implements OrderedFixt
                     // We persist id
                     $manager->persist($tournamentPlayerStats);
                 }
+                */
                 
                 $idGameTeam = $gameResult->getId();
                 $oneResult = $manager->getRepository('FutsalTournamentBundle:GameTeam')->find($idGameTeam);
@@ -54,7 +60,29 @@ class LoadPlayerStatsInTournament extends AbstractFixture implements OrderedFixt
         // Then we record all
         $manager->flush();
     }
+    
+    protected function treatPlayersStats($playersOneTeam, $tournament, $game, ObjectManager $manager)
+    {
+        // Add Stats for players
+        $nbGoalsByTeam = 0;
+        
+        foreach($playersOneTeam as $player) {
+            $nbGoals = rand(0, 10);
+            $nbGoalsByTeam += $nbGoals;
 
+            $tournamentPlayerStats = new TournamentPlayerStats();
+            $tournamentPlayerStats->setPlayer($player);
+            $tournamentPlayerStats->setTournament($tournament);
+            $tournamentPlayerStats->setGame($game);
+            $tournamentPlayerStats->setNbGoals($nbGoals);
+
+            // We persist id
+            $manager->persist($tournamentPlayerStats);
+        }
+        
+        return $nbGoalsByTeam;
+    }
+    
     public function getOrder() {
         return 7;
     }

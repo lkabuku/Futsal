@@ -14,22 +14,26 @@ class LoadClassifyTeam extends AbstractFixture implements OrderedFixtureInterfac
         // We look for one tournament
         $tournament = $manager->getRepository('FutsalTournamentBundle:Tournament')->find(1);
         
-        // We look for one group
-        $group = $manager->getRepository('FutsalTournamentBundle:Groups')->find(1);
+        // All
+        $groups = $manager->getRepository('FutsalTournamentBundle:Groups')->findAll();
         
-        // All games
-        $teams = $manager->getRepository('FutsalTournamentBundle:Team')->findAll();
-        
-        foreach($teams as $key => $team) {
-            $key++;
-            $classifyTeam = new ClassifyTeam();
-            $classifyTeam->setGroups($group);
-            $classifyTeam->setTeam($team);
-            $classifyTeam->setTournament($tournament);
-            $classifyTeam->setPositionGroup($key);
-            
-            // We persist it
-            $manager->persist($classifyTeam);
+        foreach($groups as $group) {
+            // All games
+            $teams = $manager->getRepository('FutsalTournamentBundle:Team')->findAll();
+
+            foreach($teams as $key => $team) {
+                $key++;
+                if ( ($group->getId() === 1 && $key < 7) || ($group->getId() === 2 && $key > 6) ) {
+                    $classifyTeam = new ClassifyTeam();
+                    $classifyTeam->setGroups($group);
+                    $classifyTeam->setTeam($team);
+                    $classifyTeam->setTournament($tournament);
+                    $classifyTeam->setPositionGroup($key);
+
+                    // We persist it
+                    $manager->persist($classifyTeam);
+                }
+            }
         }
         
         // Then we record all
