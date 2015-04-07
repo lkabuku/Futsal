@@ -32,7 +32,7 @@ class TournamentPlayerStats
      *
      * @ORM\Column(name="has_subscribed", type="smallint", nullable=true)
      */
-    private $hasSubscribed;
+    private $hasSubscribed;//has joined the game
     
     /**
      * @ORM\ManyToOne(targetEntity="Futsal\TournamentBundle\Entity\Game", inversedBy="game", cascade={"remove"})

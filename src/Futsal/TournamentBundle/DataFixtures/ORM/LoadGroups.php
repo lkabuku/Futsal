@@ -11,11 +11,15 @@ class LoadGroups extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        $group = new Groups();
-        $group->setNbQualifiedTeams(4);
+        $group1 = new Groups();
+        $group1->setNbQualifiedTeams(4);
+                 
+        $group2 = new Groups();
+        $group2->setNbQualifiedTeams(4);
         
         // We persist it
-        $manager->persist($group);
+        $manager->persist($group1);
+        $manager->persist($group2);
         
         // Then we record all
         $manager->flush();

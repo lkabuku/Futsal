@@ -29,7 +29,7 @@ class GameTeam
     private $goals;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Futsal\TournamentBundle\Entity\Game")
+     * @ORM\ManyToOne(targetEntity="Futsal\TournamentBundle\Entity\Game", inversedBy="gameResults")
      * @ORM\JoinColumn(name="game_id", referencedColumnName="id")
     */
     private $game;

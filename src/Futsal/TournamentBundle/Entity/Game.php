@@ -48,14 +48,6 @@ class Game
     private $gameResults;//Game results grouped by teams
     
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->gameResults = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
-    /**
      * Get id
      *
      * @return integer 
@@ -133,6 +125,13 @@ class Game
     {
         return $this->isValid;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->gameResults = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Add gameResults
@@ -166,5 +165,4 @@ class Game
     {
         return $this->gameResults;
     }
-
 }

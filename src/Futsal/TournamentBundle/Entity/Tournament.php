@@ -55,21 +55,7 @@ class Tournament
      * @ORM\Column(name="date_end", type="date", nullable=true)
      */
     private $dateEnd;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Futsal\TournamentBundle\Entity\Team")
-     * @ORM\JoinTable(name="fut_tournament_team_assoc", joinColumns={@ORM\JoinColumn(name="tournament_id", referencedColumnName="id")}, inverseJoinColumns={@ORM\JoinColumn(name="team_id", referencedColumnName="id")})
-     **/
-    private $teamsSubscribed;
-    
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->teamsSubscribed = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
+        
     /**
      * Get id
      *
@@ -193,38 +179,5 @@ class Tournament
     public function getDateEnd()
     {
         return $this->dateEnd;
-    }
-
-    /**
-     * Add teamsSubscribed
-     *
-     * @param \Futsal\TournamentBundle\Entity\Team $teamsSubscribed
-     * @return Tournament
-     */
-    public function addTeamsSubscribed(\Futsal\TournamentBundle\Entity\Team $teamsSubscribed)
-    {
-        $this->teamsSubscribed[] = $teamsSubscribed;
-
-        return $this;
-    }
-
-    /**
-     * Remove teamsSubscribed
-     *
-     * @param \Futsal\TournamentBundle\Entity\Team $teamsSubscribed
-     */
-    public function removeTeamsSubscribed(\Futsal\TournamentBundle\Entity\Team $teamsSubscribed)
-    {
-        $this->teamsSubscribed->removeElement($teamsSubscribed);
-    }
-
-    /**
-     * Get teamsSubscribed
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getTeamsSubscribed()
-    {
-        return $this->teamsSubscribed;
     }
 }
