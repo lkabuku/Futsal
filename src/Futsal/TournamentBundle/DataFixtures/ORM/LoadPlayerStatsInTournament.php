@@ -51,8 +51,8 @@ class LoadPlayerStatsInTournament extends AbstractFixture implements OrderedFixt
                 }
                 */
                 
-                $idGameTeam = $gameResult->getId();
-                $oneResult = $manager->getRepository('FutsalTournamentBundle:GameTeam')->find($idGameTeam);
+                $idResult = $gameResult->getId();
+                $oneResult = $manager->getRepository('FutsalTournamentBundle:Result')->find($idResult);
                 $oneResult->setGoals($nbGoalsByTeam);
             }
         }

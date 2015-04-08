@@ -6,7 +6,7 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Futsal\TournamentBundle\Entity\Game;
-use Futsal\TournamentBundle\Entity\GameTeam;
+use Futsal\TournamentBundle\Entity\Result;
 //use Futsal\TournamentBundle\Entity\Team;
 
 class LoadGames extends AbstractFixture implements OrderedFixtureInterface
@@ -30,11 +30,11 @@ class LoadGames extends AbstractFixture implements OrderedFixtureInterface
             $team2 = $manager->getRepository('FutsalTournamentBundle:Team')->find($match[1]);
             
             if(null !== $team1 && null !== $team2) {
-                //Add 2 teams in GameTeam
-                $gameResult1 = new GameTeam();
+                //Add 2 teams in Result
+                $gameResult1 = new Result();
                 $gameResult1->setTeam($team1);
 
-                $gameResult2 = new GameTeam();
+                $gameResult2 = new Result();
                 $gameResult2->setTeam($team2);
 
                 // Add 2 results collection in game

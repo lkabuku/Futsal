@@ -1,5 +1,5 @@
 <?php
-// src/Futsal/TournamentBundle/Admin/GameTeamAdmin.php
+// src/Futsal/TournamentBundle/Admin/ResultAdmin.php
 
 namespace Futsal\TournamentBundle\Admin;
 
@@ -8,10 +8,10 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class GameTeamAdmin extends Admin
+class ResultAdmin extends Admin
 {
     /*
-     * Create child admins (Here => GameTeamAdmin class become a child of GameAdmin and then others routes are created, for example /gameteam/{id}/game/list)
+     * Create child admins (Here => ResultAdmin class become a child of GameAdmin and then others routes are created, for example /result/{id}/game/list)
      *  
      * @return String
      */

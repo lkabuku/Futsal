@@ -9,6 +9,7 @@ use Futsal\TournamentBundle\Entity\ClassifyTeam;
 
 class LoadClassifyTeam extends AbstractFixture implements OrderedFixtureInterface
 {
+    /*
     public function load(ObjectManager $manager)
     {
         // We look for one tournament
@@ -39,7 +40,41 @@ class LoadClassifyTeam extends AbstractFixture implements OrderedFixtureInterfac
         // Then we record all
         $manager->flush();
     }
+    */
+    
+    public function load(ObjectManager $manager)
+    {
+        $nbTournamentAndGroup = 2;
+        
+        for($i=1;$i<=$nbTournamentAndGroup;$i++) {
+            // We look for one tournament
+            $tournament{$i} = $manager->getRepository('FutsalTournamentBundle:Tournament')->find($i);
 
+            // We look for one group
+            $group{$i} = $manager->getRepository('FutsalTournamentBundle:Groups')->find($i);
+
+            // All games
+            $limit = 8;
+            $offset = ( $i - 1 ) * $limit;
+            $teams = $manager->getRepository('FutsalTournamentBundle:Team')->findBy([], null, $limit, $offset);
+
+            foreach($teams as $key => $team) {
+                $key++;
+                $classifyTeam = new ClassifyTeam();
+                $classifyTeam->setGroups($group{$i});
+                $classifyTeam->setTeam($team);
+                $classifyTeam->setTournament($tournament{$i});
+                $classifyTeam->setPositionGroup($key);
+
+                // We persist it
+                $manager->persist($classifyTeam);
+            }
+        }
+        
+        // Then we record all
+        $manager->flush();
+    }
+    
     public function getOrder() {
         return 9;
     }
