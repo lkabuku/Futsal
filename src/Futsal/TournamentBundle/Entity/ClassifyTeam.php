@@ -27,6 +27,13 @@ class ClassifyTeam
      * @ORM\Column(name="position_group", type="smallint", nullable=true)
      */
     private $positionGroup;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="points", type="smallint", nullable=true)
+     */
+    private $nbPoints;
 
     /**
      * @ORM\ManyToOne(targetEntity="Futsal\TournamentBundle\Entity\Team", inversedBy="team", cascade={"remove"})
@@ -146,5 +153,28 @@ class ClassifyTeam
     public function getGroups()
     {
         return $this->groups;
+    }
+
+    /**
+     * Set nbPoints
+     *
+     * @param integer $nbPoints
+     * @return ClassifyTeam
+     */
+    public function setNbPoints($nbPoints)
+    {
+        $this->nbPoints = $nbPoints;
+
+        return $this;
+    }
+
+    /**
+     * Get nbPoints
+     *
+     * @return integer 
+     */
+    public function getNbPoints()
+    {
+        return $this->nbPoints;
     }
 }

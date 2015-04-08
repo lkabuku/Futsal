@@ -43,7 +43,7 @@ class Game
     private $isValid;
     
     /**
-     * @ORM\OneToMany(targetEntity="Futsal\TournamentBundle\Entity\GameTeam", mappedBy="game")
+     * @ORM\OneToMany(targetEntity="Futsal\TournamentBundle\Entity\Result", mappedBy="game")
      **/
     private $gameResults;//Game results grouped by teams
     
@@ -136,10 +136,10 @@ class Game
     /**
      * Add gameResults
      *
-     * @param \Futsal\TournamentBundle\Entity\GameTeam $gameResults
+     * @param \Futsal\TournamentBundle\Entity\Result $gameResults
      * @return Game
      */
-    public function addGameResult(\Futsal\TournamentBundle\Entity\GameTeam $gameResults)
+    public function addGameResult(\Futsal\TournamentBundle\Entity\Result $gameResults)
     {
         $this->gameResults[] = $gameResults;
 
@@ -149,9 +149,9 @@ class Game
     /**
      * Remove gameResults
      *
-     * @param \Futsal\TournamentBundle\Entity\GameTeam $gameResults
+     * @param \Futsal\TournamentBundle\Entity\Result $gameResults
      */
-    public function removeGameResult(\Futsal\TournamentBundle\Entity\GameTeam $gameResults)
+    public function removeGameResult(\Futsal\TournamentBundle\Entity\Result $gameResults)
     {
         $this->gameResults->removeElement($gameResults);
     }
