@@ -27,6 +27,13 @@ class Result
      * @ORM\Column(name="goals", type="smallint", nullable=true)
      */
     private $goals;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="result", type="string", nullable=true)
+     */
+    private $result;
 
     /**
      * @ORM\ManyToOne(targetEntity="Futsal\TournamentBundle\Entity\Game", inversedBy="gameResults")
@@ -175,5 +182,28 @@ class Result
     public function getTournament()
     {
         return $this->tournament;
+    }
+
+    /**
+     * Set result
+     *
+     * @param string $result
+     * @return Result
+     */
+    public function setResult($result)
+    {
+        $this->result = $result;
+
+        return $this;
+    }
+
+    /**
+     * Get result
+     *
+     * @return string 
+     */
+    public function getResult()
+    {
+        return $this->result;
     }
 }

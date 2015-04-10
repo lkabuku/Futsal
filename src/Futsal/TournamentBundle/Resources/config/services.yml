@@ -35,21 +35,21 @@ services:
             - 'FutsalTournamentBundle:GameCRUD'
         calls:
             - [ setTranslationDomain, [FutsalTournamentBundle]]
-            - [ addChild, [@sonata.admin.gameteam]]
+            - [ addChild, [@sonata.admin.result]]
             - [ setTemplate, [list, FutsalTournamentBundle:Admin:list__Game.html.twig]]
     
    
-    sonata.admin.gameteam:
-        class: Futsal\TournamentBundle\Admin\GameTeamAdmin
+    sonata.admin.result:
+        class: Futsal\TournamentBundle\Admin\ResultAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: sonata.admin.gameteam.content, label: "GameTeam" }
+            - { name: sonata.admin, manager_type: orm, group: sonata.admin.result.content, label: "Result" }
         arguments:
             - ~
-            - Futsal\TournamentBundle\Entity\GameTeam
-            - 'FutsalTournamentBundle:GameTeamCRUD'
+            - Futsal\TournamentBundle\Entity\Result
+            - 'FutsalTournamentBundle:ResultCRUD'
         calls:
             - [ setTranslationDomain, [FutsalTournamentBundle]]
-            - [ setTemplate, [list, FutsalTournamentBundle:Admin:list__GameTeam.html.twig]]
+            - [ setTemplate, [list, FutsalTournamentBundle:Admin:list__Result.html.twig]]
 
     sonata.admin.tournament:
         class: Futsal\TournamentBundle\Admin\TournamentAdmin
@@ -72,3 +72,9 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [FutsalTournamentBundle]]
+            
+    futsal_tournament.classify:
+       class: Futsal\TournamentBundle\ClassifyTeamInTournament
+       arguments: 
+            - [ "@doctrine.orm.entity_manager" ]
+            

@@ -4,9 +4,9 @@
     <div>
         {% for result in object.GameResults %}
             {% if(loop.first) %}
-                <span class="info">{{ result.team.labelname }}</span> {{ result.goals }} - 
+                <span class="info">({% if(result.result == "V") %}<b>{{ result.result }}</b>{% else %}{{ result.result }}{% endif %}) {{ result.team.labelname }}</span> {{ result.goals }} vs 
             {% else %}
-                <span class="info">{{ result.goals }}</span> {{ result.team.labelname }}
+                <span class="info">{{ result.goals }}</span> {{ result.team.labelname }} ({% if(result.result == "V") %}<b>{{ result.result }}</b>{% else %}{{ result.result }}{% endif %})
             {% endif %} 
         {% endfor %}
     </div>

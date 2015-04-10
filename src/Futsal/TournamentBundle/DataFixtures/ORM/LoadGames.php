@@ -14,14 +14,23 @@ class LoadGames extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {       
         $matchs = array(
-                    0 => array(1, 2, "Tony Chapron",0),
-                    1 => array(3, 4, "Saïd Ennjimi",0),
-                    2 => array(5, 6, "Clément Turpin",1),
-                    3 => array(7, 8, "Stéphane Lannoy",1),
-                    4 => array(9, 10, "Philippe Kalt",0),
-                    5 => array(11, 12, "Lionel Jaffredo",1),
-                    6 => array(13, 14, "Frédy Fautrel",0),
-                    7 => array(15, 16, "Wilfried Bien",1),
+                    0 => array(1, 2, "Tony Chapron",0, 1, 1),
+                    1 => array(3, 4, "Saïd Ennjimi",0, 1, 1),
+                    2 => array(5, 6, "Clément Turpin", 1, 1, 1),
+                    3 => array(7, 8, "Stéphane Lannoy",1, 1, 1),
+                    4 => array(9, 10, "Philippe Kalt",0, 2, 2),
+                    5 => array(11, 12, "Lionel Jaffredo",1, 2, 2),
+                    6 => array(13, 14, "Frédy Fautrel", 0, 2, 2),
+                    7 => array(15, 16, "Wilfried Bien", 1, 2, 2),
+            
+                    8 => array(1, 3, "Bartolomeu Varela",0, 1, 1),
+                    9 => array(2, 4, "Rudy Buquet",0, 1, 1),
+                    10 => array(5, 7, "Alexandre Castro", 1, 1, 1),
+                    11 => array(6, 8, "Amaury Delerue",1, 1, 1),
+                    12 => array(9, 11, "Sébastien Desiage",0, 2, 2),
+                    13 => array(10, 12, "Antony Gautier",1, 2, 2),
+                    14 => array(13, 15, "Mikael Lesage", 0, 2, 2),
+                    15 => array(14, 16, "Nicolas Rainville", 1, 2, 2),
                 );
         
         foreach ($matchs as $match) {                   
@@ -29,13 +38,20 @@ class LoadGames extends AbstractFixture implements OrderedFixtureInterface
             $team1 = $manager->getRepository('FutsalTournamentBundle:Team')->find($match[0]);
             $team2 = $manager->getRepository('FutsalTournamentBundle:Team')->find($match[1]);
             
+            $group = $manager->getRepository('FutsalTournamentBundle:Groups')->find($match[4]);
+            $tournament = $manager->getRepository('FutsalTournamentBundle:Tournament')->find($match[5]);
+            
             if(null !== $team1 && null !== $team2) {
                 //Add 2 teams in Result
                 $gameResult1 = new Result();
-                $gameResult1->setTeam($team1);
-
+                $gameResult1->setTeam($team1);              
+                $gameResult1->setGroup($group);
+                $gameResult1->setTournament($tournament);
+                
                 $gameResult2 = new Result();
                 $gameResult2->setTeam($team2);
+                $gameResult2->setGroup($group);
+                $gameResult2->setTournament($tournament);
 
                 // Add 2 results collection in game
                 $game = new Game();
@@ -60,7 +76,7 @@ class LoadGames extends AbstractFixture implements OrderedFixtureInterface
         // Then we record all
         $manager->flush();
     }
-
+    
     public function getOrder() {
         return 5;
     }

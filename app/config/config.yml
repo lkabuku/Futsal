@@ -133,4 +133,6 @@ sonata_admin:
                 label : "Tournament"
             sonata.admin.tournamentteam.content:
                 label : "Tournament team"
+            sonata.admin.result.content:
+                label : "Result"
           

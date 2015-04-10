@@ -44,6 +44,16 @@ class ResultAdmin extends Admin
                                             'required' => false
                                             )
                 )
+            ->add('tournament', 'integer', array(
+                                            'label' => 'Tournament',
+                                            'property' => 'id',
+                                            )
+                )
+            ->add('group', 'integer', array(
+                                            'label' => 'Tournament',
+                                            'property' => 'id',
+                                            )
+                )
         ;
     }
 
@@ -58,6 +68,8 @@ class ResultAdmin extends Admin
         $datagridMapper
             ->add('game.id')
             ->add('team.id')
+            ->add('tournament.id')
+            ->add('group.id')
             ->add('goals')
         ;
     }
@@ -87,6 +99,19 @@ class ResultAdmin extends Admin
                                             'associated_property' => 'labelname'
                                             )
                 )
+            ->add('tournament', 'entity', array(
+                                            'class' => 'Futsal\TournamentBundle\Entity\Tournament',
+                                            'property' => 'id',
+                                            'associated_property' => 'labelname'
+                                            )
+                )
+            ->add('group', 'entity', array(
+                                            'class' => 'Futsal\TournamentBundle\Entity\Group',
+                                            'property' => 'id',
+                                            'associated_property' => 'id'
+                                            )
+                )
+            ->add('result')
             ->add('goals')
         ;
     }
