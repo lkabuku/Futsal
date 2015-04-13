@@ -108,7 +108,7 @@ class LoadClassifyTeam extends AbstractFixture implements OrderedFixtureInterfac
                     SELECT SUM(g.goals)
                     FROM Futsal\TournamentBundle\Entity\Result g
                     WHERE g.game IN (
-                        SELECT r.id 
+                        SELECT IDENTITY(r.game)
                         FROM Futsal\TournamentBundle\Entity\Result r
                         WHERE r.team = :teamId
                         AND r.group = :groupId
@@ -129,11 +129,10 @@ class LoadClassifyTeam extends AbstractFixture implements OrderedFixtureInterfac
         */
         
         // $qb instanceof QueryBuilder
-
         $qb = $em->createQueryBuilder();
         $qb->select('sum(u.goals) as goals')
             ->from('Futsal\TournamentBundle\Entity\Result', 'u')
-            ->where('u.game IN (SELECT '.new Expr\Select(array('r.game')).' FROM '.new Expr\From('Futsal\TournamentBundle\Entity\Result', 'r').' WHERE r.team = :teamId AND r.group = :groupId AND r.tournament = :tournamentId)')
+            ->where('u.game IN (SELECT IDENTITY(r.game) FROM '.new Expr\From('Futsal\TournamentBundle\Entity\Result', 'r').' WHERE r.team = :teamId AND r.group = :groupId AND r.tournament = :tournamentId)')
             ->andWhere($qb->expr()->not($qb->expr()->eq('u.team', $idTeam)))
             ->andWhere('u.team != :teamId')
             ->setParameter("teamId", $idTeam)
@@ -143,8 +142,7 @@ class LoadClassifyTeam extends AbstractFixture implements OrderedFixtureInterfac
 
         $result = $query->getResult(Query::HYDRATE_SINGLE_SCALAR);
 
-        //echo "goal against :".$result." / team id : ".$idTeam." / group : ".$idGroup." / tournament : ".$idTournament."\r\n";
-        echo $query->getSQL();echo "\r\n";
+        //echo $query->getSQL();echo "\r\n";
         return $result;
     }
     
