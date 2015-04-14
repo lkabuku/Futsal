@@ -73,6 +73,17 @@ services:
         calls:
             - [ setTranslationDomain, [FutsalTournamentBundle]]
             
+    sonata.admin.classifyteam:
+        class: Futsal\TournamentBundle\Admin\ClassifyTeamAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: sonata.admin.classifyteam.content, label: "ClassifyTeam" }
+        arguments:
+            - ~
+            - Futsal\TournamentBundle\Entity\ClassifyTeam
+            - ~
+        calls:
+            - [ setTranslationDomain, [FutsalTournamentBundle]]
+            
     futsal_tournament.classify:
        class: Futsal\TournamentBundle\ClassifyTeamInTournament
        arguments: 

@@ -135,4 +135,6 @@ sonata_admin:
                 label : "Tournament team"
             sonata.admin.result.content:
                 label : "Result"
+            sonata.admin.classifyteam.content:
+                label : "League table"
           

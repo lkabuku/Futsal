@@ -50,7 +50,7 @@ class LoadClassifyTeam extends AbstractFixture implements OrderedFixtureInterfac
                 $classifyTeam->setGroups($group{$i});
                 $classifyTeam->setTeam($team);
                 $classifyTeam->setTournament($tournament{$i});
-                $classifyTeam->setPositionGroup($key);
+                //$classifyTeam->setPositionGroup($key);
                 
                 $nbPoints = $this->treatNbPointsOneTeam($team->getId(), $tournament{$i}->getId(), $group{$i}->getId(), $manager);
                 $classifyTeam->setNbPoints($nbPoints);
@@ -61,15 +61,26 @@ class LoadClassifyTeam extends AbstractFixture implements OrderedFixtureInterfac
                 $goalFor = $this->treatGoalsForOneTeam($team->getId(), $tournament{$i}->getId(), $group{$i}->getId(), $em);
                 $classifyTeam->setGoalFor($goalFor);
                 
+                $goalDiff = $goalFor - $goalAgainst;
+                //Test de la difference à retirer
+                /*
+                if($nbPoints === 6) {
+                    $goalDiff = 10;
+                }
+                 * 
+                 */
+                $classifyTeam->setGoalDifference($goalDiff);
+                
                 // We persist it
                 $manager->persist($classifyTeam);
+                $manager->flush();
             }
+            
+            $this->classifyTeam($tournament{$i}, $group{$i}, $manager);
         }
         
         // Then we record all
-        $manager->flush();
-        
-        $this->classifyTeam(1, 1, $manager);
+        //$manager->flush();
     }
     
     /* Set points to all team */
@@ -163,10 +174,31 @@ class LoadClassifyTeam extends AbstractFixture implements OrderedFixtureInterfac
         return $result;
     }
     
+    /*
+    protected function treatGoalsDifferenceForOneTeam($idTeam, $idTournament, $idGroup, $em) {   
+        $qb = $em->createQueryBuilder();
+        $qb->select('u.goalFor')
+            ->from('Futsal\TournamentBundle\Entity\ClassifyTeam', 'u')
+            ->where('u.team = :teamId')
+            ->andWhere('u.groups = :groupId')
+            ->andWhere('u.tournament = :tournamentId')
+            ->setParameter("teamId", $idTeam)
+            ->setParameter("groupId", $idGroup)
+            ->setParameter("tournamentId", $idTournament);
+        $query = $qb->getQuery();
+        
+        $result = $query->getResult(Query::HYDRATE_SINGLE_SCALAR);
+        echo $query->getSQL();echo "\r\n";
+        exit;
+        return $result;
+    }
+    */
     
     /* Returns an array of classified team */
-    public function classifyTeam($idTournament, $idGroup, ObjectManager $manager)
+    public function classifyTeam($tournament, $group, ObjectManager $manager)
     {
+        $idTournament = $tournament->getId();
+        $idGroup = $group->getId();
         $allTeamsClassified = $manager->getRepository('FutsalTournamentBundle:ClassifyTeam')->findBy(
                                                                                             array(
                                                                                                 'tournament' => $idTournament,
@@ -175,23 +207,57 @@ class LoadClassifyTeam extends AbstractFixture implements OrderedFixtureInterfac
                                                                                         );
 
         usort($allTeamsClassified, "static::compare");
-        //
-        //$manager->persist($allTeamsClassified);
         
-        // Then we record all
-        //$manager->flush();
+        foreach($allTeamsClassified as $key => $teamClassified) {
+            //echo $teamClassified->getTeam()->getName()." - ".$teamClassified->getNbPoints()." pts \r\n";
+            $classifyTeam = $manager->getRepository('FutsalTournamentBundle:ClassifyTeam')->findOneBy(
+                                                                                            array(
+                                                                                                'tournament' => $idTournament,
+                                                                                                'groups' => $idGroup,
+                                                                                                'team' => $teamClassified->getTeam()->getId()
+                                                                                            )
+                                                                                        );
+            $position = $key+1;
+            $classifyTeam->setPositionGroup($position);
+            
+            $manager->persist($classifyTeam);
+        }
         
-        return $allTeamsClassified;
+        $manager->flush();
     }
     
     /* Compares some properties of an array */
     private static function compare($a, $b) {
-        //echo var_dump($a->getNbPoints());echo "/";
-        if ($a->getNbPoints() === $b->getNbPoints()) {
-            return 0;
+        //echo "Id Team A : ".$a->getId()." - ".$a->getNbPoints()."/ Id Team B :".$b->Id()." - ".$b->getNbPoints()."\r\n";
+        
+        if (
+                //Perfect egality
+                ( $a->getNbPoints() === $b->getNbPoints() ) && 
+                ( $a->getGoalDifference() === $b->getGoalDifference() ) && 
+                ( $a->getGoalFor() === $b->getGoalFor() ) 
+            ) {
+            $compareReturn = 0;
+        } elseif (
+                    //Egality on the number of points but not on the goal difference
+                    ( $a->getNbPoints() === $b->getNbPoints() ) &&
+                    ( $a->getGoalDifference() > $b->getGoalDifference() )
+                ) {
+           $compareReturn = -1;
+        } elseif (
+                    //Egality on the number of points, the goal difference but not on the goal for
+                    ( $a->getNbPoints() === $b->getNbPoints() ) &&
+                    ( $a->getGoalDifference() === $b->getGoalDifference() ) && 
+                    ( $a->getGoalFor() > $b->getGoalFor() ) 
+                ) {
+            $compareReturn = -1;
+        } else if( $a->getNbPoints() > $b->getNbPoints() ) {
+            //Team A got more points than Team B
+            $compareReturn = -1;
+        } else {
+            $compareReturn = 1;
         }
         
-        return ($a->getNbPoints() < $b->getNbPoints()) ? -1 : 1;
+        return $compareReturn;
     }
 
     public function getOrder() {
