@@ -5,12 +5,12 @@ namespace Futsal\TournamentBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * GameTeam
+ * Result
  *
- * @ORM\Table(name="fut_game_team")
- * @ORM\Entity(repositoryClass="Futsal\TournamentBundle\Entity\GameTeamRepository")
+ * @ORM\Table(name="fut_result")
+ * @ORM\Entity(repositoryClass="Futsal\TournamentBundle\Entity\ResultRepository")
  */
-class GameTeam
+class Result
 {
     /**
      * @var integer
@@ -27,6 +27,13 @@ class GameTeam
      * @ORM\Column(name="goals", type="smallint", nullable=true)
      */
     private $goals;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="result", type="string", nullable=true)
+     */
+    private $result;
 
     /**
      * @ORM\ManyToOne(targetEntity="Futsal\TournamentBundle\Entity\Game", inversedBy="gameResults")
@@ -39,6 +46,18 @@ class GameTeam
      * @ORM\JoinColumn(name="team_id", referencedColumnName="id")
     */
     private $team;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Futsal\TournamentBundle\Entity\Groups")
+     * @ORM\JoinColumn(name="group_id", referencedColumnName="id")
+    */
+    private $group;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Futsal\TournamentBundle\Entity\Tournament")
+     * @ORM\JoinColumn(name="tournament_id", referencedColumnName="id")
+    */
+    private $tournament;
 
     /**
      * Get id
@@ -54,7 +73,7 @@ class GameTeam
      * Set goals
      *
      * @param integer $goals
-     * @return GameTeam
+     * @return Result
      */
     public function setGoals($goals)
     {
@@ -77,7 +96,7 @@ class GameTeam
      * Set game
      *
      * @param \Futsal\TournamentBundle\Entity\Game $game
-     * @return GameTeam
+     * @return Result
      */
     public function setGame(\Futsal\TournamentBundle\Entity\Game $game = null)
     {
@@ -100,7 +119,7 @@ class GameTeam
      * Set team
      *
      * @param \Futsal\TournamentBundle\Entity\Team $team
-     * @return GameTeam
+     * @return Result
      */
     public function setTeam(\Futsal\TournamentBundle\Entity\Team $team = null)
     {
@@ -117,5 +136,74 @@ class GameTeam
     public function getTeam()
     {
         return $this->team;
+    }
+
+    /**
+     * Set group
+     *
+     * @param \Futsal\TournamentBundle\Entity\Groups $group
+     * @return Result
+     */
+    public function setGroup(\Futsal\TournamentBundle\Entity\Groups $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return \Futsal\TournamentBundle\Entity\Groups 
+     */
+    public function getGroup()
+    {
+        return $this->group;
+    }
+
+    /**
+     * Set tournament
+     *
+     * @param \Futsal\TournamentBundle\Entity\Tournament $tournament
+     * @return Result
+     */
+    public function setTournament(\Futsal\TournamentBundle\Entity\Tournament $tournament = null)
+    {
+        $this->tournament = $tournament;
+
+        return $this;
+    }
+
+    /**
+     * Get tournament
+     *
+     * @return \Futsal\TournamentBundle\Entity\Tournament 
+     */
+    public function getTournament()
+    {
+        return $this->tournament;
+    }
+
+    /**
+     * Set result
+     *
+     * @param string $result
+     * @return Result
+     */
+    public function setResult($result)
+    {
+        $this->result = $result;
+
+        return $this;
+    }
+
+    /**
+     * Get result
+     *
+     * @return string 
+     */
+    public function getResult()
+    {
+        return $this->result;
     }
 }

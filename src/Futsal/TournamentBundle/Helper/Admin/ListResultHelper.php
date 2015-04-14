@@ -1,14 +1,14 @@
 <?php
-// src/Futsal/TournamentBundle/Helper/Admin/ListGameTeamHelper.php
+// src/Futsal/TournamentBundle/Helper/Admin/ListResultHelper.php
 namespace Futsal\TournamentBundle\Helper\Admin;
 
 use Symfony\Component\Templating\Helper\Helper;
 
-class ListGameTeamHelper extends Helper
+class ListResultHelper extends Helper
 {
     public function getName()
     {
-        return 'ListGameTeamHelper';
+        return 'ListResultHelper';
     }
     
 

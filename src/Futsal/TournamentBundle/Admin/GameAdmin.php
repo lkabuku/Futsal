@@ -70,7 +70,7 @@ class GameAdmin extends Admin
             )
             /*
             ->add('gameResults', 'entity', array(
-                                            'class' => 'Futsal\TournamentBundle\Entity\GameTeam',
+                                            'class' => 'Futsal\TournamentBundle\Entity\Result',
                                             'property' => 'id'
                                             )
                 )
@@ -108,7 +108,7 @@ class GameAdmin extends Admin
             ->add('date')
             ->add('isValid')
             ->add('gameResults', 'entity', array(
-                                            'class' => 'Futsal\TournamentBundle\Entity\GameTeam',
+                                            'class' => 'Futsal\TournamentBundle\Entity\Result',
                                             'property' => 'id',
                                             'associated_property' => 'id',
                                             //@param template => Determines the template to use for this field

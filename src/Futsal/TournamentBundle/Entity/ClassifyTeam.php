@@ -27,6 +27,41 @@ class ClassifyTeam
      * @ORM\Column(name="position_group", type="smallint", nullable=true)
      */
     private $positionGroup;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="points", type="smallint", nullable=true)
+     */
+    private $nbPoints;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="goal_for", type="smallint", nullable=true)
+     */
+    private $goalFor;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="goal_against", type="smallint", nullable=true)
+     */
+    private $goalAgainst;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="goal_difference", type="smallint", nullable=true)
+     */
+    private $goalDifference;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="penalty", type="smallint", nullable=true)
+     */
+    private $penalty;
 
     /**
      * @ORM\ManyToOne(targetEntity="Futsal\TournamentBundle\Entity\Team", inversedBy="team", cascade={"remove"})
@@ -146,5 +181,120 @@ class ClassifyTeam
     public function getGroups()
     {
         return $this->groups;
+    }
+
+    /**
+     * Set nbPoints
+     *
+     * @param integer $nbPoints
+     * @return ClassifyTeam
+     */
+    public function setNbPoints($nbPoints)
+    {
+        $this->nbPoints = $nbPoints;
+
+        return $this;
+    }
+
+    /**
+     * Get nbPoints
+     *
+     * @return integer 
+     */
+    public function getNbPoints()
+    {
+        return $this->nbPoints;
+    }
+
+    /**
+     * Set goalFor
+     *
+     * @param integer $goalFor
+     * @return ClassifyTeam
+     */
+    public function setGoalFor($goalFor)
+    {
+        $this->goalFor = $goalFor;
+
+        return $this;
+    }
+
+    /**
+     * Get goalFor
+     *
+     * @return integer 
+     */
+    public function getGoalFor()
+    {
+        return $this->goalFor;
+    }
+
+    /**
+     * Set goalAgainst
+     *
+     * @param integer $goalAgainst
+     * @return ClassifyTeam
+     */
+    public function setGoalAgainst($goalAgainst)
+    {
+        $this->goalAgainst = $goalAgainst;
+
+        return $this;
+    }
+
+    /**
+     * Get goalAgainst
+     *
+     * @return integer 
+     */
+    public function getGoalAgainst()
+    {
+        return $this->goalAgainst;
+    }
+
+    /**
+     * Set goalDifference
+     *
+     * @param integer $goalDifference
+     * @return ClassifyTeam
+     */
+    public function setGoalDifference($goalDifference)
+    {
+        $this->goalDifference = $goalDifference;
+
+        return $this;
+    }
+
+    /**
+     * Get goalDifference
+     *
+     * @return integer 
+     */
+    public function getGoalDifference()
+    {
+        return $this->goalDifference;
+    }
+
+    /**
+     * Set penalty
+     *
+     * @param integer $penalty
+     * @return ClassifyTeam
+     */
+    public function setPenalty($penalty)
+    {
+        $this->penalty = $penalty;
+
+        return $this;
+    }
+
+    /**
+     * Get penalty
+     *
+     * @return integer 
+     */
+    public function getPenalty()
+    {
+        return $this->penalty;
     }
 }

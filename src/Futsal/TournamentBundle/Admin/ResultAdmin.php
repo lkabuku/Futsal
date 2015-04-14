@@ -1,5 +1,5 @@
 <?php
-// src/Futsal/TournamentBundle/Admin/GameTeamAdmin.php
+// src/Futsal/TournamentBundle/Admin/ResultAdmin.php
 
 namespace Futsal\TournamentBundle\Admin;
 
@@ -8,10 +8,10 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class GameTeamAdmin extends Admin
+class ResultAdmin extends Admin
 {
     /*
-     * Create child admins (Here => GameTeamAdmin class become a child of GameAdmin and then others routes are created, for example /gameteam/{id}/game/list)
+     * Create child admins (Here => ResultAdmin class become a child of GameAdmin and then others routes are created, for example /result/{id}/game/list)
      *  
      * @return String
      */
@@ -44,6 +44,16 @@ class GameTeamAdmin extends Admin
                                             'required' => false
                                             )
                 )
+            ->add('tournament', 'integer', array(
+                                            'label' => 'Tournament',
+                                            'property' => 'id',
+                                            )
+                )
+            ->add('group', 'integer', array(
+                                            'label' => 'Tournament',
+                                            'property' => 'id',
+                                            )
+                )
         ;
     }
 
@@ -58,6 +68,8 @@ class GameTeamAdmin extends Admin
         $datagridMapper
             ->add('game.id')
             ->add('team.id')
+            ->add('tournament.id')
+            ->add('group.id')
             ->add('goals')
         ;
     }
@@ -87,6 +99,19 @@ class GameTeamAdmin extends Admin
                                             'associated_property' => 'labelname'
                                             )
                 )
+            ->add('tournament', 'entity', array(
+                                            'class' => 'Futsal\TournamentBundle\Entity\Tournament',
+                                            'property' => 'id',
+                                            'associated_property' => 'labelname'
+                                            )
+                )
+            ->add('group', 'entity', array(
+                                            'class' => 'Futsal\TournamentBundle\Entity\Group',
+                                            'property' => 'id',
+                                            'associated_property' => 'id'
+                                            )
+                )
+            ->add('result')
             ->add('goals')
         ;
     }

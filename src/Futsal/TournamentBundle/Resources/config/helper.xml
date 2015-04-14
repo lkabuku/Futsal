@@ -8,7 +8,7 @@
        <service id="templating.helper.listgame" class="Futsal\TournamentBundle\Helper\Admin\ListGameHelper">
            <tag name="templating.helper" alias="list_game" />
        </service>
-       <service id="templating.helper.listgameteam" class="Futsal\TournamentBundle\Helper\Admin\ListGameTeamHelper">
+       <service id="templating.helper.listresult" class="Futsal\TournamentBundle\Helper\Admin\ListResultHelper">
            <tag name="templating.helper" alias="list_game_team" />
        </service>
    </services>

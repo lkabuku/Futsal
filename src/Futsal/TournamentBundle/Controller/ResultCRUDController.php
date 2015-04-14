@@ -1,10 +1,10 @@
 <?php
-// /src/Futsal/TournamentBundle/GameTeamCRUDController.php
+// /src/Futsal/TournamentBundle/ResultCRUDController.php
 namespace Futsal\TournamentBundle\Controller;
 
 use Sonata\AdminBundle\Controller\CRUDController;
 
-class GameTeamCRUDController extends CRUDController
+class ResultCRUDController extends CRUDController
 {    
     /**
      * List action
@@ -22,8 +22,8 @@ class GameTeamCRUDController extends CRUDController
         $datagrid = $this->admin->getDatagrid();
         $formView = $datagrid->getForm()->createView();
         
-        //$helperListGameTeam = $this->get('templating.helper.listgameteam');
-        //$helperListGameTeam->execute($datagrid->getResults());
+        //$helperListResult = $this->get('templating.helper.listresult');
+        //$helperListResult->execute($datagrid->getResults());
         
         // set the theme for the current Admin Form
         $this->get('twig')->getExtension('form')->renderer->setTheme($formView, $this->admin->getFilterTheme());
