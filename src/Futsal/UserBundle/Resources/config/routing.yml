@@ -1,15 +1,22 @@
+sonata_user_security:
+    resource: "@SonataUserBundle/Resources/config/routing/sonata_security_1.xml"
+
+sonata_user_resetting:
+    resource: "@SonataUserBundle/Resources/config/routing/sonata_resetting_1.xml"
+    prefix: /resetting
+
+sonata_user_profile:
+    resource: "@SonataUserBundle/Resources/config/routing/sonata_profile_1.xml"
+    prefix: /profile
+
+sonata_user_register:
+    resource: "@SonataUserBundle/Resources/config/routing/sonata_registration_1.xml"
+    prefix: /register
+
+sonata_user_change_password:
+    resource: "@SonataUserBundle/Resources/config/routing/sonata_change_password_1.xml"
+    prefix: /profile
+    
 futsal_user_homepage:
     path:     /
     defaults: { _controller: FutsalUserBundle:Default:index }
-    
-futsal_user_login:
-    path:     /login
-    defaults: { _controller: FutsalUserBundle:Security:login }
-
-futsal_user_login_check:
-    path:     /login_check
-    defaults: { _controller: FutsalUserBundle:Security:loginCheck }
-    
-futsal_user_admin_homepage:
-    path:     /admin/home
-    defaults: { _controller: FutsalUserBundle:Security:admin }

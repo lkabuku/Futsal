@@ -62,7 +62,8 @@ doctrine:
         #   2. Uncomment database_path in parameters.yml.dist
         #   3. Uncomment next line:
         #     path:     "%database_path%"
-
+        types:
+            json: Sonata\Doctrine\Types\JsonType
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
@@ -75,7 +76,22 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
+# FOS User Configuration
+fos_user:
+    db_driver:      orm
+    firewall_name:  main
+    user_class:     Sonata\UserBundle\Entity\BaseUser
+    group:
+        group_class:   Sonata\UserBundle\Entity\BaseGroup
+        group_manager: sonata.user.orm.group_manager
+    service:
+        user_manager: sonata.user.orm.user_manager
+
 # Sonata Configuration
+sonata_user:
+    security_acl: false
+    manager_type: orm
+
 sonata_block:
     default_contexts: [cms]
     blocks:
