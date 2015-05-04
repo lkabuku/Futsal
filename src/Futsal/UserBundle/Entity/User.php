@@ -22,7 +22,7 @@ class User extends BaseUser
     
     /**
      * @ORM\ManyToMany(targetEntity="Futsal\UserBundle\Entity\Group")
-     * @ORM\JoinTable(name="fut_user_group",
+     * @ORM\JoinTable(name="fut_user_groups",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
      * )
