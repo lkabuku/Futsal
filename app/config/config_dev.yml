@@ -43,6 +43,10 @@ monolog:
 
 assetic:
     use_controller: true
-
+    filters:
+        less: 
+            node: "C:\\Program Files (x86)\\nodejs\\node.exe"
+            node_paths: [ "C:\\Program Files (x86)\\nodejs\\node_modules" ]
+            apply_to: "\.less$"
 #swiftmailer:
 #    delivery_address: me@example.com
