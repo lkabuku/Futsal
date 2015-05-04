@@ -20,3 +20,7 @@ sonata_user_change_password:
 futsal_user_homepage:
     path:     /
     defaults: { _controller: FutsalUserBundle:Default:index }
+    
+futsal_user_security_check:
+    path:     /login_main_check
+    defaults: { _controller: FutsalUserBundle:Security:check }

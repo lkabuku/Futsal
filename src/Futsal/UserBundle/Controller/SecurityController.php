@@ -11,39 +11,10 @@ use Futsal\UserBundle\Entity\User;
 
 class SecurityController extends Controller
 {
-    
-    public function loginAction(Request $request)
+       
+    public function checkAction(Request $request)
     {
-        // Si le visiteur est déjà identifié, on le redirige vers l'accueil
         /*
-        if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {            
-            return $this->redirect($this->generateUrl('futsal_user_admin_homepage'));
-        }
-        */
-        
-        $session = $request->getSession();
-        
-        // On vérifie s'il y a des erreurs d'une précédente soumission du formulaire
-        if ($request->attributes->has(SecurityContextInterface::AUTHENTICATION_ERROR)) {
-            $error = $request->attributes->get(SecurityContextInterface::AUTHENTICATION_ERROR);
-        } elseif (null !== $session && $session->has(SecurityContextInterface::AUTHENTICATION_ERROR)) {
-            $error = $session->get(SecurityContextInterface::AUTHENTICATION_ERROR);
-            $session->remove(SecurityContextInterface::AUTHENTICATION_ERROR);
-        } else {
-            $error = '';
-        }
-
-        $lastUsername = (null === $session) ? '' : $session->get(SecurityContextInterface::LAST_USERNAME);
-        
-        return $this->render('FutsalUserBundle:Security:login.html.twig', array(
-            // Valeur du précédent nom d'utilisateur entré par l'internaute
-            'last_username' => $lastUsername,
-            'error'         => $error,
-        ));
-    }
-    
-    public function loginCheckAction(Request $request)
-    {
         $username = $request->request->get("username");
         $plaintextPassword = $request->request->get("password");
         
@@ -54,15 +25,13 @@ class SecurityController extends Controller
         $em = $this->getDoctrine()->getManager();
         $userRepository = $em->getRepository('FutsalUserBundle:User');
         $userRepository->checkUserByUsernameAndPassword($username, $password);
+         * 
+         */
+        return $this->redirectToRoute('futsal_user_homepage');
     }
     
     public function logoutAction(Request $request)
     {
         
-    }
-    
-    public function adminAction(Request $request)
-    {
-        return new Response("Admin Section !");
     }
 }
