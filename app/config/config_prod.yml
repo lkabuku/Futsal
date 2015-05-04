@@ -23,3 +23,12 @@ monolog:
             level: debug
         console:
             type:  console
+            
+# A modifier plus tard
+assetic:
+    use_controller: true
+    filters:
+        less: 
+            node: "C:\\Program Files (x86)\\nodejs\\node.exe"
+            node_paths: [ "C:\\Program Files (x86)\\nodejs\\node_modules" ]
+            apply_to: "\.less$"
