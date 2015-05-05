@@ -1,0 +1,24 @@
+{{ form_start(form, {'method': form_enctype(form), 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register form-horizontal'} }) }}
+    <div class="form-group">
+        {{ form_label(form.username, 'form.username'|trans({}, 'FOSUserBundle'), {'label_attr': {'class': 'control-label'}}) }}
+        {{ form_widget(form.username, {'attr': {'class': 'form-control', 'placeholder' : 'placeholder.username'|trans({}, 'FOSUserBundle') }}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.email, 'form.email'|trans({}, 'FOSUserBundle'), {'label_attr': {'class': 'control-label'}}) }}
+        {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder' : 'placeholder.email'|trans({}, 'FOSUserBundle')  }}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.plainPassword.first, 'form.password'|trans({}, 'FOSUserBundle'), {'label_attr': {'class': 'control-label'}}) }}
+        {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control', 'placeholder' : 'placeholder.password'|trans({}, 'FOSUserBundle') }}) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.plainPassword.second, 'form.password_confirmation'|trans({}, 'FOSUserBundle'), {'label_attr': {'class': 'control-label'}}) }}
+        {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control', 'placeholder' : 'Re-tapez ' ~ 'placeholder.password'|trans({}, 'FOSUserBundle')|lower }}) }}
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+            <input type="submit" id="_submit" name="_submit" class="btn btn-warning" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}">
+        </div>
+    </div>
+{{ form_end(form) }}
+{# dump(form.plainPassword.first.vars.name) #}
