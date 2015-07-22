@@ -12,3 +12,4 @@
 /composer.phar
 /nbproject/*
 /phpunit.phar
+.idea/*
